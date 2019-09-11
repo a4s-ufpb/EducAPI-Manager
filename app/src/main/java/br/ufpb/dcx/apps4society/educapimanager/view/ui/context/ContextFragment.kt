@@ -1,4 +1,4 @@
-package br.ufpb.dcx.apps4society.educapimanager.view.ui.share
+package br.ufpb.dcx.apps4society.educapimanager.view.ui.context
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import br.ufpb.dcx.apps4society.educapimanager.R
 
-class ShareFragment : Fragment() {
+class ContextFragment : Fragment() {
 
-    private lateinit var shareViewModel: ShareViewModel
+    private lateinit var contextViewModel: ContextViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        shareViewModel =
-            ViewModelProviders.of(this).get(ShareViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_share, container, false)
-        val textView: TextView = root.findViewById(R.id.text_share)
-        shareViewModel.text.observe(this, Observer {
+        contextViewModel =
+            ViewModelProviders.of(this).get(ContextViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_context, container, false)
+        val textView: TextView = root.findViewById(R.id.text_gallery)
+        contextViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

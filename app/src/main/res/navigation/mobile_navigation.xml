@@ -6,44 +6,26 @@
     app:startDestination="@+id/nav_home">
 
     <fragment
-        android:id="@+id/nav_login"
-        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.login.LoginFragment"
-        android:label="@string/menu_login"
-        tools:layout="@layout/fragment_login" />
-
-    <fragment
         android:id="@+id/nav_home"
         android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+    <activity
+        android:id="@+id/nav_about"
+        android:name="br.ufpb.dcx.apps4society.educapimanager.view.AboutActivity"
+        android:label="@string/menu_about"
+        tools:layout="@layout/activity_about" />
+
+    <activity
+        android:id="@+id/nav_contact"
+        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ContactActivity"
+        android:label="@string/menu_contact"
+        tools:layout="@layout/activity_contact" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
-        android:id="@+id/nav_tools"
-        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
-
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:id="@+id/nav_logout"
+        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.logout.LogoutFragment"
+        android:label="@string/menu_contact"
+        tools:layout="@layout/fragment_logout" />
 </navigation>

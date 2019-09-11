@@ -1,13 +1,13 @@
-package br.ufpb.dcx.apps4society.educapimanager.view.ui.share
+package br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ShareViewModel : ViewModel() {
+class ChallengeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is share Fragment"
+        value = "This is Challenge Fragment"
     }
     val text: LiveData<String> = _text
 }

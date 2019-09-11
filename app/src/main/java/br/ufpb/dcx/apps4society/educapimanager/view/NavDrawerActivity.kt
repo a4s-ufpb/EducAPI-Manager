@@ -13,7 +13,14 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import androidx.fragment.app.FragmentManager
 import br.ufpb.dcx.apps4society.educapimanager.R
+import androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+import androidx.viewpager.widget.ViewPager
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.ChallengeFragment
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.ContextFragment
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.home.HomeFragment
+import com.google.android.material.tabs.TabLayout
 
 class NavDrawerActivity : AppCompatActivity() {
 
@@ -37,22 +44,38 @@ class NavDrawerActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_login, R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send
+                R.id.nav_home, R.id.nav_contact, R.id.nav_logout, R.id.nav_about
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
 
+    fun fillTabMenu() {
+        val adapter : TabMenuAdapter = TabMenuAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        adapter.add( ContextFragment(),getString(R.string.menu_context))
+        adapter.add( ChallengeFragment(),getString(R.string.menu_challenge))
+
+        val vpTabMenu : ViewPager = findViewById(R.id.vpTabMenu)
+        vpTabMenu.adapter = adapter
+        val tlTabMenu : TabLayout = findViewById(R.id.tlTabMenu)
+        tlTabMenu.setupWithViewPager(vpTabMenu)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.nav_drawer, menu)
+        fillTabMenu()
         return true
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 }
