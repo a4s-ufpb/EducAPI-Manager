@@ -8,11 +8,27 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufpb.dcx.apps4society.educapimanager.R;
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.ChallengeFragment;
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.ContextFragment;
+
 public class TabMenuAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments = new ArrayList<>();
     private List<String> titles = new ArrayList<>();
+    private static TabMenuAdapter instance;
 
-    public TabMenuAdapter(@NonNull FragmentManager fm, int behavior) {
+
+    public static TabMenuAdapter getInstance(@NonNull FragmentManager fm, int behavior){
+        if(instance == null){
+            instance = new TabMenuAdapter(fm, behavior);
+            instance.add(new ContextFragment(),"Contextos");
+            instance.add(new ChallengeFragment(),"Desafios");
+        }
+
+        return instance;
+    }
+
+    private TabMenuAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 

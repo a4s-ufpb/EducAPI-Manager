@@ -11,17 +11,17 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <activity
+    <fragment
         android:id="@+id/nav_about"
-        android:name="br.ufpb.dcx.apps4society.educapimanager.view.AboutActivity"
+        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.about.AboutFragment"
         android:label="@string/menu_about"
-        tools:layout="@layout/activity_about" />
+        tools:layout="@layout/fragment_about" />
 
-    <activity
+    <fragment
         android:id="@+id/nav_contact"
-        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ContactActivity"
+        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.contact.ContactFragment"
         android:label="@string/menu_contact"
-        tools:layout="@layout/activity_contact" />
+        tools:layout="@layout/fragment_contact" />
 
     <fragment
         android:id="@+id/nav_logout"
