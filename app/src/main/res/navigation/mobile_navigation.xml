@@ -28,4 +28,5 @@
         android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.logout.LogoutFragment"
         android:label="@string/menu_contact"
         tools:layout="@layout/fragment_logout" />
+
 </navigation>
