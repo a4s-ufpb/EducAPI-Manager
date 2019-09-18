@@ -9,7 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.ufpb.dcx.apps4society.educapimanager.R
+import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer
 import br.ufpb.dcx.apps4society.educapimanager.model.Context
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ContextFragment : Fragment() {
 
@@ -38,14 +42,28 @@ class ContextFragment : Fragment() {
         return root
     }
 
-    fun fillRecycleView(){
+    fun fillRecycleView(contexts : List<Context>){
         recyclerView.layoutManager = layManager
         recyclerView.adapter = ContextListAdapter(contexts)
     }
 
+    fun getAllContextsFromService(){
+        val call = RetrofitInitializer().contextService().findAll()
+        call.enqueue(object: Callback<List<Context>?> {
+            override fun onResponse(call: Call<List<Context>?>?, response: Response<List<Context>?>?) {
+                response?.body()?.let {
+                    fillRecycleView(it)
+                }
+            }
+
+            override fun onFailure(call: Call<List<Context>?>?, t: Throwable?) {
+                Log.e(TAG, t?.message)
+            }
+        })
+    }
+
     override fun onResume() {
         super.onResume()
-        fillRecycleView()
-        Log.i(TAG,"AQUI ESTOU MAIS UM DIA")
+        getAllContextsFromService()
     }
 }

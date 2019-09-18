@@ -1,14 +1,9 @@
-package br.ufpb.dcx.apps4society.educapimanager.view;
+package br.ufpb.dcx.apps4society.educapimanager.view.ui.home;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.ChallengeFragment;
 import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.ContextFragment;

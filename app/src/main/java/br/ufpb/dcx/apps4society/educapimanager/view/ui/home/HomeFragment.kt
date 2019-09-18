@@ -10,9 +10,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import br.ufpb.dcx.apps4society.educapimanager.R
-import br.ufpb.dcx.apps4society.educapimanager.view.TabMenuAdapter
-import br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.ChallengeFragment
-import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.ContextFragment
 import com.google.android.material.tabs.TabLayout
 
 
@@ -28,7 +25,8 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
-        tabMenuAdapter = TabMenuAdapter(childFragmentManager,
+        tabMenuAdapter = TabMenuAdapter(
+            childFragmentManager,
             FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
         );
 
