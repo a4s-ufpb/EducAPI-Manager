@@ -61,6 +61,71 @@
             </LayoutPositions>
           </value>
         </entry>
+        <entry key="nav_create_challenge.xml">
+          <value>
+            <LayoutPositions>
+              <option name="myPositions">
+                <map>
+                  <entry key="nav_challenge_audio">
+                    <value>
+                      <LayoutPositions />
+                    </value>
+                  </entry>
+                  <entry key="nav_challenge_name">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_nav_challenge_name_to_nav_challenge_photo">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="nav_challenge_photo">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_nav_challenge_photo_to_nav_challenge_video">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="nav_challenge_sucess">
+                    <value>
+                      <LayoutPositions />
+                    </value>
+                  </entry>
+                  <entry key="nav_challenge_video">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_nav_challenge_video_to_nav_challenge_audio">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </LayoutPositions>
+          </value>
+        </entry>
         <entry key="nav_create_context.xml">
           <value>
             <LayoutPositions>
@@ -116,6 +181,18 @@
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="nav_context_sucess">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>

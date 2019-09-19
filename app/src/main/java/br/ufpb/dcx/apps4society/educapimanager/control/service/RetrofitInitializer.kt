@@ -14,4 +14,6 @@ class RetrofitInitializer {
 
     fun contextService() = retrofit.create(ContextService::class.java)
 
+    fun challengeService() = retrofit.create(ChallengeService::class.java)
+
 }

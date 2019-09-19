@@ -19,7 +19,6 @@ class ContextFragment : Fragment() {
 
     private lateinit var layManager : LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
-    private lateinit var contexts : ArrayList<Context>
     private var TAG : String = "CreateContextFragmentName"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -27,17 +26,6 @@ class ContextFragment : Fragment() {
 
         recyclerView = root.findViewById(R.id.context_recycle_view)
         layManager = LinearLayoutManager(context)
-        contexts = ArrayList<Context>()
-
-        contexts.add(Context(null, "Animais", null, null, null, null))
-        contexts.add(Context(null, "Veículos", null, null, null, null))
-        contexts.add(Context(null, "Casa", null, null, null, null))
-        contexts.add(Context(null, "Escola", null, null, null, null))
-        contexts.add(Context(null, "Cidade", null, null, null, null))
-        contexts.add(Context(null, "Cidade", null, null, null, null))
-        contexts.add(Context(null, "Cidade", null, null, null, null))
-        contexts.add(Context(null, "Cidade", null, null, null, null))
-        contexts.add(Context(null, "Cidade", null, null, null, null))
 
         return root
     }
