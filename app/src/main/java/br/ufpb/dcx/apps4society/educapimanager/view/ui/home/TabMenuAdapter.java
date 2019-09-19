@@ -12,6 +12,7 @@ import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.ContextFragment;
 public class TabMenuAdapter extends FragmentPagerAdapter {
 
     private Integer size = 2;
+    private Fragment currentFragemnt;
 
     public TabMenuAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
@@ -22,12 +23,17 @@ public class TabMenuAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new ContextFragment();
+                currentFragemnt = new ContextFragment();
+                break;
             case 1:
-                return new ChallengeFragment();
+                currentFragemnt = new ChallengeFragment();
+                break;
             default:
-                return new ContextFragment();
+                currentFragemnt = new ContextFragment();
+                break;
         }
+
+        return currentFragemnt;
     }
 
     @Override
@@ -45,5 +51,9 @@ public class TabMenuAdapter extends FragmentPagerAdapter {
             default:
                 return "Contextos";
         }
+    }
+
+    public Fragment getCurrentFragment(){
+        return currentFragemnt;
     }
 }

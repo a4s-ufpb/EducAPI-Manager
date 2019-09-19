@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProviders
+import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import br.ufpb.dcx.apps4society.educapimanager.R
+import br.ufpb.dcx.apps4society.educapimanager.view.NavDrawerActivity
 import com.google.android.material.tabs.TabLayout
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(){
+
     private final var TAG : String = "HomeFragment"
     private lateinit var tabMenuAdapter : TabMenuAdapter
     private lateinit var viewPagerTabMenu : ViewPager
@@ -39,13 +42,31 @@ class HomeFragment : Fragment() {
         tabLayoutTabMenu = view.findViewById(R.id.tlTabMenu)
         tabLayoutTabMenu.setupWithViewPager(viewPagerTabMenu)
         viewPagerTabMenu.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayoutTabMenu))
+        viewPagerTabMenu.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+                Log.i(TAG,"ScrollState")
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                Log.i(TAG,"Scrolled")
+            }
+
+            override fun onPageSelected(position: Int) {
+                NavDrawerActivity.OnChangeViewPagerFragment(object : NavDrawerActivity.OnNavDrawerListener {
+                    override fun onChangeFragment(): Fragment {
+                        Log.i(TAG,"CHANGE")
+                        return tabMenuAdapter.getItem(position)
+                    }
+                })
+            }
+
+        })
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fillTabMenu(view)
-        Log.i(TAG, "AQUI")
     }
 
 }
