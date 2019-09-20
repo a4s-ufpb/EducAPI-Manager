@@ -4,9 +4,9 @@
     <string name="nav_header_title">EducAPI Manager</string>
     <string name="nav_header_subtitle">apps4society@dcx.ufpb.br</string>
     <string name="nav_header_desc">EducAPI Manager</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Configurações</string>
 
-    <string name="title_activity_nav_drawer">NavDrawerActivity</string>
+    <string name="title_activity_nav_drawer">EducAPI Manager</string>
     <string name="menu_challenge">Desafios</string>
     <string name="menu_context">Contextos</string>
     <string name="menu_about">Sobre</string>
