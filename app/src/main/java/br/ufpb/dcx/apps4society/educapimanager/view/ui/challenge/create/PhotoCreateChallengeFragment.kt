@@ -11,7 +11,7 @@ class PhotoCreateChallengeFragment : Fragment() {
     private var TAG : String = "PhotoCreateChallengeFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_create_context_2_photo, container, false)
+        val root = inflater.inflate(R.layout.fragment_create_challenge_2_photo, container, false)
         return root
     }
 }

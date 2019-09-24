@@ -11,7 +11,7 @@ class VideoCreateChallengeFragment : Fragment() {
     private var TAG : String = "VideoCreateChallengeFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_create_context_3_video, container, false)
+        val root = inflater.inflate(R.layout.fragment_create_challenge_3_video, container, false)
         return root
     }
 }

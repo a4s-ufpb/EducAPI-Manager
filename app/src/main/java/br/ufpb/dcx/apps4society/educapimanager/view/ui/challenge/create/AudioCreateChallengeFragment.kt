@@ -11,7 +11,7 @@ class AudioCreateChallengeFragment : Fragment() {
     private var TAG : String = "AudioCreateChallengeFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_create_context_4_audio, container, false)
+        val root = inflater.inflate(R.layout.fragment_create_challenge_4_audio, container, false)
         return root
     }
 }

@@ -11,7 +11,7 @@ class NameCreateChallengeFragment : Fragment() {
     private var TAG : String = "NameCreateChallengeFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_create_context_1_name, container, false)
+        val root = inflater.inflate(R.layout.fragment_create_challenge_1_name, container, false)
         return root
     }
 }
