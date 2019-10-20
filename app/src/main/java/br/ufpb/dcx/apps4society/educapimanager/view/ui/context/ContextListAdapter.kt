@@ -1,6 +1,5 @@
 package br.ufpb.dcx.apps4society.educapimanager.view.ui.context
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.ufpb.dcx.apps4society.educapimanager.R
-import br.ufpb.dcx.apps4society.educapimanager.model.Context
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.EncodeStrategy
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-class ContextListAdapter(private var contexts: List<Context>, fragmentContext: android.content.Context) : RecyclerView.Adapter<ContextListAdapter.ViewHolder>() {
+class ContextListAdapter(private var contexts: List<ContextDTO>, fragmentContext: android.content.Context) : RecyclerView.Adapter<ContextListAdapter.ViewHolder>() {
     private var TAG : String = "ContextListAdapter"
     private var fragmentContext : android.content.Context = fragmentContext
 

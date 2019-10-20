@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.ufpb.dcx.apps4society.educapimanager.R
 import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer
-import br.ufpb.dcx.apps4society.educapimanager.model.Challenge
+import br.ufpb.dcx.apps4society.educapimanager.model.bean.Challenge
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,7 +31,7 @@ class ChallengeFragment : Fragment() {
 
     fun fillRecycleView(challenges : List<Challenge>){
         recyclerView.layoutManager = layManager
-        recyclerView.adapter = ChallengeListAdapter(challenges)
+        recyclerView.adapter = context?.let { ChallengeListAdapter(challenges, it) }
     }
 
     fun getAllChallengesFromService(){

@@ -38,6 +38,8 @@ class CreateChallengeActivity : AppCompatActivity(), View.OnClickListener{
                     navController.graph.findNode(R.id.nav_challenge_name) -> navController.navigate(R.id.action_nav_challenge_name_to_nav_challenge_photo)
                     navController.graph.findNode(R.id.nav_challenge_photo) -> navController.navigate(R.id.action_nav_challenge_photo_to_nav_challenge_video)
                     navController.graph.findNode(R.id.nav_challenge_video) -> navController.navigate(R.id.action_nav_challenge_video_to_nav_challenge_audio)
+                    navController.graph.findNode(R.id.nav_challenge_audio) -> navController.navigate(R.id.action_nav_challenge_audio_to_nav_challenge_sucess)
+                    navController.graph.findNode(R.id.nav_challenge_sucess) -> finish()
                 }
         }
     }

@@ -1,4 +1,4 @@
-package br.ufpb.dcx.apps4society.educapimanager.model;
+package br.ufpb.dcx.apps4society.educapimanager.model.bean;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package br.ufpb.dcx.apps4society.educapimanager.control
+package br.ufpb.dcx.apps4society.educapimanager.model
 
 import android.widget.Button
 

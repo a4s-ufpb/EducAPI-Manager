@@ -3,21 +3,17 @@ package br.ufpb.dcx.apps4society.educapimanager.view.ui.url
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import br.ufpb.dcx.apps4society.educapimanager.R
-import br.ufpb.dcx.apps4society.educapimanager.control.ButtonListener
+import br.ufpb.dcx.apps4society.educapimanager.model.ButtonListener
+import br.ufpb.dcx.apps4society.educapimanager.model.LoadImageUrlListener
 import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
-import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.create.PhotoCreateContextFragment
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_create_context.*
-import kotlinx.android.synthetic.main.fragment_create_context_2_photo.*
-import kotlinx.android.synthetic.main.get_url_input_fragment.*
 
 class UrlFragment(fragment : Fragment) : Fragment(), View.OnClickListener{
 
@@ -79,7 +75,7 @@ class UrlFragment(fragment : Fragment) : Fragment(), View.OnClickListener{
             R.id.btnConfirmUrl -> {
                 fragmentManager?.popBackStack()
                 activeTouchScreem()
-                if (type.equals(IMAGE_URL)) (fragment as PhotoCreateContextFragment).loadImageByUrl()
+                if (type.equals(IMAGE_URL)) (fragment as LoadImageUrlListener).loadImage()
             }
         }
     }

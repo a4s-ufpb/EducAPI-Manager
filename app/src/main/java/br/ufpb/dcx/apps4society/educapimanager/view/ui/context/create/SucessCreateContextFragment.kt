@@ -1,6 +1,7 @@
 package br.ufpb.dcx.apps4society.educapimanager.view.ui.context.create
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +28,7 @@ class SucessCreateContextFragment : Fragment() {
     }
 
     private fun saveContext(){
-        var call : Call<Void> = RetrofitInitializer().contextService().insert(CreateObjectFacade.instance.tempContext)
+        val call : Call<Void> = RetrofitInitializer().contextService().insert(CreateObjectFacade.instance.tempContext)
 
         call.enqueue(object: Callback<Void?> {
             override fun onResponse(call: Call<Void?>?, response: Response<Void?>?) {

@@ -1,17 +1,16 @@
 package br.ufpb.dcx.apps4society.educapimanager.view.ui.context.create
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import br.ufpb.dcx.apps4society.educapimanager.R
-import br.ufpb.dcx.apps4society.educapimanager.control.ButtonListener
+import br.ufpb.dcx.apps4society.educapimanager.model.ButtonListener
+import br.ufpb.dcx.apps4society.educapimanager.model.LoadImageUrlListener
 import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
 import br.ufpb.dcx.apps4society.educapimanager.view.ui.url.UrlFragment
 import com.bumptech.glide.Glide
@@ -19,7 +18,9 @@ import com.bumptech.glide.load.EncodeStrategy
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import java.util.*
 
-class PhotoCreateContextFragment : Fragment(), View.OnClickListener, ButtonListener{
+class PhotoCreateContextFragment : Fragment(), View.OnClickListener,
+    ButtonListener,
+    LoadImageUrlListener {
 
     private var TAG : String = "PhotoCreateContextFragment"
     private lateinit var btnImageUrl : Button
@@ -45,6 +46,11 @@ class PhotoCreateContextFragment : Fragment(), View.OnClickListener, ButtonListe
         return root
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadImage()
+    }
+
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btnImageUrl -> {
@@ -62,12 +68,11 @@ class PhotoCreateContextFragment : Fragment(), View.OnClickListener, ButtonListe
         transaction?.commit()
     }
 
-    override fun onResume() {
-        super.onResume()
-        loadImageByUrl()
+    override fun getListeners(): List<Button> {
+        return buttons
     }
 
-    fun loadImageByUrl() {
+    override fun loadImage() {
         val imageUrl = CreateObjectFacade.instance.tempContext.imageUrl
 
         val diskCacheStrategy = object : DiskCacheStrategy() {
@@ -101,10 +106,6 @@ class PhotoCreateContextFragment : Fragment(), View.OnClickListener, ButtonListe
             .error(erroImg)
             .diskCacheStrategy(diskCacheStrategy)
             .into(contextImage)
-    }
-
-    override fun getListeners(): List<Button> {
-        return buttons
     }
 
 }

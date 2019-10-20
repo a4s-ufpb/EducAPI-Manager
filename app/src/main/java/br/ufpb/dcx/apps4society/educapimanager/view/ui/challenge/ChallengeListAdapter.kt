@@ -1,6 +1,5 @@
 package br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.ufpb.dcx.apps4society.educapimanager.R
-import br.ufpb.dcx.apps4society.educapimanager.model.Challenge
+import br.ufpb.dcx.apps4society.educapimanager.model.bean.Challenge
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.EncodeStrategy
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-class ChallengeListAdapter(private var challenges : List<Challenge>) : RecyclerView.Adapter<ChallengeListAdapter.ViewHolder>() {
+class ChallengeListAdapter(private var challenges : List<Challenge>, private var fragmentContext: android.content.Context) : RecyclerView.Adapter<ChallengeListAdapter.ViewHolder>() {
     private var TAG : String = "ChallengeListAdapter"
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_challenge, parent, false)
@@ -24,7 +26,40 @@ class ChallengeListAdapter(private var challenges : List<Challenge>) : RecyclerV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.challenge_name.setText(challenges.get(position).word)
-        Log.i(TAG, ""+challenges.size)
+        loadImage(challenges[position].imageUrl, holder.challenge_image)
+    }
+
+    private fun loadImage(imageUrl: String?, themeImageLeft: ImageView) {
+        val diskCacheStrategy = object : DiskCacheStrategy() {
+            override fun isDataCacheable(dataSource: com.bumptech.glide.load.DataSource?): Boolean {
+                return true
+            }
+
+            override fun isResourceCacheable(isFromAlternateCacheKey: Boolean, dataSource: com.bumptech.glide.load.DataSource?, encodeStrategy: EncodeStrategy?): Boolean {
+                return true
+            }
+
+            override fun decodeCachedResource(): Boolean {
+                return true
+            }
+
+            override fun decodeCachedData(): Boolean {
+                return true
+            }
+
+        }
+        var erroImg : Int
+        try {
+            erroImg = Integer.parseInt(imageUrl)
+        } catch (e: NumberFormatException) {
+            erroImg = R.drawable.no_image
+        }
+
+        Glide.with(fragmentContext)
+            .load(imageUrl)
+            .error(erroImg)
+            .diskCacheStrategy(diskCacheStrategy)
+            .into(themeImageLeft)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.ufpb.dcx.apps4society.educapimanager.R
 import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer
-import br.ufpb.dcx.apps4society.educapimanager.model.Context
+import br.ufpb.dcx.apps4society.educapimanager.model.bean.Context
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,21 +31,21 @@ class ContextFragment : Fragment() {
         return root
     }
 
-    fun fillRecycleView(contexts : List<Context>){
+    fun fillRecycleView(contexts : List<ContextDTO>){
         recyclerView.layoutManager = layManager
         recyclerView.adapter = context?.let { ContextListAdapter(contexts, it) }
     }
 
     fun getAllContextsFromService(){
         val call = RetrofitInitializer().contextService().findAll()
-        call.enqueue(object: Callback<List<Context>?> {
-            override fun onResponse(call: Call<List<Context>?>?, response: Response<List<Context>?>?) {
+        call.enqueue(object: Callback<List<ContextDTO>?> {
+            override fun onResponse(call: Call<List<ContextDTO>?>?, response: Response<List<ContextDTO>?>?) {
                 response?.body()?.let {
                     fillRecycleView(it)
                 }
             }
 
-            override fun onFailure(call: Call<List<Context>?>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<ContextDTO>?>?, t: Throwable?) {
                 Log.e(TAG, t?.message)
             }
         })

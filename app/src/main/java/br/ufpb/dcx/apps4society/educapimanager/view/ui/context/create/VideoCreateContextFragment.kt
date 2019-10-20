@@ -1,7 +1,6 @@
 package br.ufpb.dcx.apps4society.educapimanager.view.ui.context.create
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +8,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import br.ufpb.dcx.apps4society.educapimanager.R
-import br.ufpb.dcx.apps4society.educapimanager.control.ButtonListener
+import br.ufpb.dcx.apps4society.educapimanager.model.ButtonListener
 import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
 import br.ufpb.dcx.apps4society.educapimanager.view.ui.url.UrlFragment
 
-class VideoCreateContextFragment : Fragment(), View.OnClickListener, ButtonListener {
+class VideoCreateContextFragment : Fragment(), View.OnClickListener,
+    ButtonListener {
 
     private var TAG : String = "VideoCreateContextFragment"
     private lateinit var btnVideoUrl : Button

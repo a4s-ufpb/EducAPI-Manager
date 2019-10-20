@@ -1,29 +1,13 @@
 package br.ufpb.dcx.apps4society.educapimanager.view.ui.context
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.os.bundleOf
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigator
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import br.ufpb.dcx.apps4society.educapimanager.R
-import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
-import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer
-import br.ufpb.dcx.apps4society.educapimanager.model.Context
-import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.create.NameCreateContextFragment
-import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.create.PhotoCreateContextFragment
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.*
 
 
 class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
