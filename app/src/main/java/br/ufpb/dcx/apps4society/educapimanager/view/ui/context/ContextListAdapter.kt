@@ -29,7 +29,6 @@ class ContextListAdapter(private var contexts: List<Context>, fragmentContext: a
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.context_name.text = contexts[position].name
-        Log.i(TAG, ""+contexts[position].imageUrl)
         loadImage(contexts[position].imageUrl, holder.context_image)
     }
 

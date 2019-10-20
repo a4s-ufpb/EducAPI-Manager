@@ -39,7 +39,11 @@
         android:id="@+id/nav_context_audio"
         android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.context.create.AudioCreateContextFragment"
         android:label="@string/label_create_context"
-        tools:layout="@layout/fragment_create_context_4_audio" />
+        tools:layout="@layout/fragment_create_context_4_audio" >
+        <action
+            android:id="@+id/action_nav_context_audio_to_nav_context_sucess"
+            app:destination="@id/nav_context_sucess" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_context_sucess"

@@ -16,7 +16,6 @@ class AudioCreateContextFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_create_context_4_audio, container, false)
-        Log.i("FIM", CreateObjectFacade.instance.tempContext.toString())
         return root
     }
 

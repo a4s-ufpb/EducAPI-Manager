@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import br.ufpb.dcx.apps4society.educapimanager.R
 
 class SucessCreateContextFragment : Fragment() {
-    private var TAG : String = "VideoCreateContextFragment"
+    private var TAG : String = "SucessCreateContextFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_create_context_3_video, container, false)
+        val root = inflater.inflate(R.layout.fragment_context_create_sucess, container, false)
         return root
     }
 }
