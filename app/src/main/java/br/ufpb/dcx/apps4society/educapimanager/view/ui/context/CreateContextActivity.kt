@@ -59,29 +59,7 @@ class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
 
                 navController.graph.findNode(R.id.nav_context_audio) -> navController.navigate(R.id.action_nav_context_audio_to_nav_context_sucess)
 
-                navController.graph.findNode(R.id.nav_context_sucess) -> {
-                    Log.i(TAG, CreateObjectFacade.instance.tempContext.toString())
-                    var call : Call<Void> = RetrofitInitializer().contextService().insert(CreateObjectFacade.instance.tempContext)
-
-                    call.enqueue(object: Callback<Void?> {
-                        override fun onResponse(call: Call<Void?>?, response: Response<Void?>?) {
-                            if(response?.isSuccessful!!){
-                                Log.i(TAG, "SUCESSO!!")
-                                Toast.makeText(applicationContext, "Contexto criado com sucesso!", Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(applicationContext, "Erro ao criar contexto!", Toast.LENGTH_SHORT).show()
-                                Log.i(TAG, "NÃO SUCESSO!!")
-                            }
-                        }
-
-                        override fun onFailure(call: Call<Void?>?, t: Throwable?) {
-                            Toast.makeText(applicationContext, "Erro ao se comunicar com o serviço!", Toast.LENGTH_SHORT).show()
-                            Log.i(TAG, "DEU ERRADO NO SERVICE!! " + t?.message + call.toString())
-                        }
-                    })
-
-                    finish()
-                }
+                navController.graph.findNode(R.id.nav_context_sucess) -> finish()
             }
         }
     }

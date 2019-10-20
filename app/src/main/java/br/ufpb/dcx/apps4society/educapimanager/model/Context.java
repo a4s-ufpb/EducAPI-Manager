@@ -1,6 +1,5 @@
 package br.ufpb.dcx.apps4society.educapimanager.model;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 

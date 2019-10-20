@@ -39,6 +39,8 @@ class NameCreateContextFragment : Fragment() {
 
 
         })
+
+        tvName.editText?.setText(CreateObjectFacade.instance.tempContext.name)
         return root
     }
 }

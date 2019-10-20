@@ -9,15 +9,27 @@ class CreateObjectFacade {
     }
 
     var tempContext : Context = Context()
-        get() = field
-        set(value) {
-            field = value
-        }
     var tempChallenge : Challenge = Challenge()
-        get() = field
-        set(value) {
-            field = value
-        }
+
+    fun clearTempContext(){
+        tempContext.id = -1
+        tempContext.name = null
+        tempContext.imageUrl = null
+        tempContext.videoUrl = null
+        tempContext.soundUrl = null
+        tempContext.creator = null
+        tempContext.challenges = HashSet<Challenge>()
+    }
+
+    fun clearTempChallenge(){
+        tempChallenge.id = -1
+        tempChallenge.word = null
+        tempChallenge.imageUrl = null
+        tempChallenge.videoUrl = null
+        tempChallenge.soundUrl = null
+        tempChallenge.creator = null
+        tempChallenge.contexts = HashSet<Context>()
+    }
 
 
 }

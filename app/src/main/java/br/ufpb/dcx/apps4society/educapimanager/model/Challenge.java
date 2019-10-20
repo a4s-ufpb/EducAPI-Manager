@@ -104,7 +104,7 @@ public class Challenge{
 
 	/**
 	 * Returns the Contexts related to this Challenge.
-	 * 
+	 *
 	 * @return the Contexts related to this Challenge.
 	 */
 	public Set<Context> getContexts() {
@@ -117,7 +117,7 @@ public class Challenge{
 	 * @param contexts
 	 *            the Contexts related to this Challenge.
 	 */
-	public void setContextId(Set<Context> contexts) {
+	public void setContexts(Set<Context> contexts) {
 		this.contexts = contexts;
 	}
 
@@ -185,7 +185,7 @@ public class Challenge{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -5,34 +5,106 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import br.ufpb.dcx.apps4society.educapimanager.R
+import br.ufpb.dcx.apps4society.educapimanager.control.ButtonListener
+import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
 import br.ufpb.dcx.apps4society.educapimanager.view.ui.url.UrlFragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.EncodeStrategy
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import java.util.*
 
-class PhotoCreateContextFragment : Fragment(), View.OnClickListener{
+class PhotoCreateContextFragment : Fragment(), View.OnClickListener, ButtonListener{
 
     private var TAG : String = "PhotoCreateContextFragment"
     private lateinit var btnImageUrl : Button
+    private lateinit var btnOpenCam : Button
+    private lateinit var btnOpenGalery : Button
+    private lateinit var contextImage : ImageView
+    private lateinit var tvContextImageName : TextView
+    private var buttons : ArrayList<Button> = ArrayList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_create_context_2_photo, container, false)
         btnImageUrl = root.findViewById(R.id.btnImageUrl)
         btnImageUrl.setOnClickListener(this)
-        Log.i(TAG, btnImageUrl.text.toString())
+        btnOpenCam = root.findViewById(R.id.btnOpenCam)
+        btnOpenCam.setOnClickListener(this)
+        btnOpenGalery = root.findViewById(R.id.btnOpenGalery)
+        btnOpenGalery.setOnClickListener(this)
+        contextImage = root.findViewById(R.id.context_image_view)
+        tvContextImageName = root.findViewById(R.id.tvContextImageName)
+        tvContextImageName.text = "Imagem do contexto " + CreateObjectFacade.instance.tempContext.name
+
+        buttons.addAll(listOf(btnImageUrl, btnOpenCam, btnOpenGalery))
         return root
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btnImageUrl -> {
-                val transaction = fragmentManager?.beginTransaction()
-                val urlFragment : UrlFragment = UrlFragment()
-                urlFragment.type = UrlFragment.IMAGE_URL
-                transaction?.replace(R.id.frameAuxPhotoFragment, urlFragment)
-                transaction?.addToBackStack(null)
-                transaction?.commit()
+                loadUrlFragment()
             }
         }
     }
+
+    private fun loadUrlFragment(){
+        val transaction = fragmentManager?.beginTransaction()
+        val urlFragment : UrlFragment = UrlFragment(this)
+        urlFragment.type = UrlFragment.IMAGE_URL
+        transaction?.replace(R.id.frameAuxPhotoFragment, urlFragment)
+        transaction?.addToBackStack(null)
+        transaction?.commit()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadImageByUrl()
+    }
+
+    fun loadImageByUrl() {
+        val imageUrl = CreateObjectFacade.instance.tempContext.imageUrl
+
+        val diskCacheStrategy = object : DiskCacheStrategy() {
+            override fun isDataCacheable(dataSource: com.bumptech.glide.load.DataSource?): Boolean {
+                return true
+            }
+
+            override fun isResourceCacheable(isFromAlternateCacheKey: Boolean, dataSource: com.bumptech.glide.load.DataSource?, encodeStrategy: EncodeStrategy?): Boolean {
+                return true
+            }
+
+            override fun decodeCachedResource(): Boolean {
+                return true
+            }
+
+            override fun decodeCachedData(): Boolean {
+                return true
+            }
+
+        }
+
+        var erroImg : Int
+        try {
+            erroImg = Integer.parseInt(imageUrl)
+        } catch (e: NumberFormatException) {
+            erroImg = R.drawable.no_image
+        }
+
+        Glide.with(this)
+            .load(imageUrl)
+            .error(erroImg)
+            .diskCacheStrategy(diskCacheStrategy)
+            .into(contextImage)
+    }
+
+    override fun getListeners(): List<Button> {
+        return buttons
+    }
+
 }
