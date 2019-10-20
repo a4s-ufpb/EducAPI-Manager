@@ -32,7 +32,7 @@ class ContextFragment : Fragment() {
 
     fun fillRecycleView(contexts : List<Context>){
         recyclerView.layoutManager = layManager
-        recyclerView.adapter = ContextListAdapter(contexts)
+        recyclerView.adapter = context?.let { ContextListAdapter(contexts, it) }
     }
 
     fun getAllContextsFromService(){
