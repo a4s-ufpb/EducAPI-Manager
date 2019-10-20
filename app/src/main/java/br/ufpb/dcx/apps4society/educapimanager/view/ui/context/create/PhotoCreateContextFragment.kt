@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import br.ufpb.dcx.apps4society.educapimanager.R
-import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.CreateContextActivity
 import br.ufpb.dcx.apps4society.educapimanager.view.ui.url.UrlFragment
 
-class PhotoCreateContextFragment : Fragment(), View.OnClickListener {
+class PhotoCreateContextFragment : Fragment(), View.OnClickListener{
+
     private var TAG : String = "PhotoCreateContextFragment"
     private lateinit var btnImageUrl : Button
 
@@ -30,24 +28,11 @@ class PhotoCreateContextFragment : Fragment(), View.OnClickListener {
             R.id.btnImageUrl -> {
                 val transaction = fragmentManager?.beginTransaction()
                 val urlFragment : UrlFragment = UrlFragment()
-                transaction?.replace(R.id.frameAuxFragment, urlFragment)
+                urlFragment.type = UrlFragment.IMAGE_URL
+                transaction?.replace(R.id.frameAuxPhotoFragment, urlFragment)
                 transaction?.addToBackStack(null)
                 transaction?.commit()
-
             }
         }
-    }
-
-    companion object {
-        fun confirmUrl(hook : OnResponseListener){
-            var url : String = hook.onClickConfirm()
-            var bundleOf : Bundle = bundleOf("image_url" to url)
-            CreateContextActivity.instance.nextFragment(bundleOf)
-            Log.i("AGUA", url)
-        }
-    }
-
-    interface OnResponseListener{
-        fun onClickConfirm(): String
     }
 }

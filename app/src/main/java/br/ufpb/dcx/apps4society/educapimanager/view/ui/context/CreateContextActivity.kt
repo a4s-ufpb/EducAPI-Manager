@@ -14,6 +14,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import br.ufpb.dcx.apps4society.educapimanager.R
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.create.NameCreateContextFragment
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.create.PhotoCreateContextFragment
 
 
 class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
@@ -25,9 +27,9 @@ class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_context)
+        navController = findNavController(R.id.nav_create_context_host)
         findViewById<Button>(R.id.btnNext).setOnClickListener(this)
         toolbar = findViewById(R.id.toolbar)
-        navController = findNavController(R.id.nav_create_context_host)
         setToolbar()
     }
 
@@ -44,24 +46,16 @@ class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
 
     override fun onClick(v: View?) {
         when(v?.id){
-            R.id.btnNext -> nextFragment(null)
+            R.id.btnNext -> when (navController.currentDestination){
+                navController.graph.findNode(R.id.nav_context_name) -> {
+                    navController.navigate(R.id.action_nav_context_name_to_nav_context_photo)
+                }
+                navController.graph.findNode(R.id.nav_context_photo) -> {
+                    navController.navigate(R.id.action_nav_context_photo_to_nav_context_video)
+                }
+                navController.graph.findNode(R.id.nav_context_video) -> navController.navigate(R.id.action_nav_context_video_to_nav_context_audio)
+            }
         }
-    }
-
-    fun nextFragment(bundleOf : Bundle?){
-        Log.i("AQUI", "OPAA")
-        Log.i("AQUI", ""+ (if (navController == null) "true" else "false"))
-        when (navController.currentDestination){
-            navController.graph.findNode(R.id.nav_context_name) -> navController.navigate(R.id.action_nav_context_name_to_nav_context_photo, bundleOf)
-            navController.graph.findNode(R.id.nav_context_photo) -> navController.navigate(R.id.action_nav_context_photo_to_nav_context_video, bundleOf)
-            navController.graph.findNode(R.id.nav_context_video) -> navController.navigate(R.id.action_nav_context_video_to_nav_context_audio, bundleOf)
-        }
-    }
-
-    companion object{
-        val instance = CreateContextActivity()
-
-
     }
 
 }

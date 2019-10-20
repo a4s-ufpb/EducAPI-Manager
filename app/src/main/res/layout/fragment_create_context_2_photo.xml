@@ -104,7 +104,7 @@
         app:layout_constraintGuide_percent="0.25" />
 
     <FrameLayout
-        android:id="@+id/frameAuxFragment"
+        android:id="@+id/frameAuxPhotoFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxWidth="500dp"
