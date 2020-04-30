@@ -13,7 +13,11 @@
     <string name="menu_contact">Contato</string>
     <string name="menu_logout">Sair</string>
     <string name="menu_home">Home</string>
+    <string name="menu_search">Search</string>
 
     <string name="label_create_context">Criando contexto</string>
     <string name="label_create_challenge">Criando desafio</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -50,7 +50,7 @@ class NavDrawerActivity() : AppCompatActivity(), View.OnClickListener{
 //      menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_contact, R.id.nav_logout, R.id.nav_about
+                R.id.nav_home, R.id.nav_contact, R.id.nav_logout, R.id.nav_about,R.id.nav_search
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

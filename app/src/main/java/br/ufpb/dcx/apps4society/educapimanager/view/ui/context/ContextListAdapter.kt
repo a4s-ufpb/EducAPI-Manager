@@ -52,7 +52,7 @@ class ContextListAdapter(private var contexts: List<ContextDTO>, fragmentContext
         }
         var erroImg : Int
         try {
-            erroImg = Integer.parseInt(imageUrl)
+            erroImg = Integer.parseInt(imageUrl.toString())
         } catch (e: NumberFormatException) {
             erroImg = R.drawable.no_image
         }

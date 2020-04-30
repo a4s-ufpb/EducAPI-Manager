@@ -12,8 +12,10 @@ import com.google.api.services.customsearch.model.Result;
 import com.google.api.services.customsearch.model.Search;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class SearchEngineClient {
@@ -23,15 +25,7 @@ public class SearchEngineClient {
     private List<Result> resultado = new ArrayList<>();
 
 
-
-
-
-
-    public static void fill(List<Result> foraThread,List<Result> dentro){
-        dentro = foraThread;
-    }
-
-    public synchronized List<Result> search(final String query) {
+    public  List<Result> search(final String query) {
 
 
             Customsearch.Builder customse = null;
@@ -51,14 +45,52 @@ public class SearchEngineClient {
                 Customsearch.Cse.List list = customse.build().cse().list(query);
                 list.setKey(API_KEY);
                 list.setCx(CX_KEY);
-                Search results = list.execute();
-                resultado = results.getItems();
-            } catch (Exception e) {e.printStackTrace();
+                SearchExecutor executor = new SearchExecutor(list);
+                executor.start();
+                executor.join();
+                if(executor.isFailure() == true){
 
-            }
+                }else{
+                    resultado = executor.getSearchResult().getItems();
+                }
+
+
+            } catch (Exception e) {e.printStackTrace();}
+
 
         return resultado;
+
     }
 
+    }
+    class SearchExecutor extends Thread {
+
+        private Customsearch.Cse.List list;
+        private Search results;
+        private boolean failure;
+
+        SearchExecutor(Customsearch.Cse.List list){
+            this.list = list;
+            this.results = null;
+            this.failure = false;
+        }
+
+        public Search getSearchResult(){
+            return results;
+        }
+
+        public boolean isFailure(){
+            return this.failure;
+        }
+
+        @Override
+        public void run() {
+            try {
+                 this.results = list.execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+                this.failure = true;
+            }
+        }
     }
 

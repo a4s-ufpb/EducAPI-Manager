@@ -61,7 +61,7 @@ class PhotoCreateContextFragment : Fragment(), View.OnClickListener,
 
     private fun loadUrlFragment(){
         val transaction = fragmentManager?.beginTransaction()
-        val urlFragment : UrlFragment = UrlFragment(this)
+        val urlFragment  = UrlFragment(this)
         urlFragment.type = UrlFragment.IMAGE_URL
         transaction?.replace(R.id.frameAuxPhotoFragment, urlFragment)
         transaction?.addToBackStack(null)
