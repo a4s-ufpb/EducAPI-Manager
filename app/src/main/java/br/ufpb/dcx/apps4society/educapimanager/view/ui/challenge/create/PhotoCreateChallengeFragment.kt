@@ -12,6 +12,7 @@ import br.ufpb.dcx.apps4society.educapimanager.R
 import br.ufpb.dcx.apps4society.educapimanager.model.ButtonListener
 import br.ufpb.dcx.apps4society.educapimanager.model.LoadImageUrlListener
 import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.search.SearchFragment
 import br.ufpb.dcx.apps4society.educapimanager.view.ui.url.UrlFragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.EncodeStrategy
@@ -60,7 +61,8 @@ class PhotoCreateChallengeFragment : Fragment(), View.OnClickListener,
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btnChallengeImageUrl -> {
-                loadUrlFragment()
+                //loadUrlFragment()
+                loadImageSearchFragment()
             }
         }
     }
@@ -70,6 +72,14 @@ class PhotoCreateChallengeFragment : Fragment(), View.OnClickListener,
         val urlFragment : UrlFragment = UrlFragment(this)
         urlFragment.type = UrlFragment.IMAGE_URL
         transaction?.replace(R.id.frameAuxPhotoFragment, urlFragment)
+        transaction?.addToBackStack(null)
+        transaction?.commit()
+    }
+
+    private fun loadImageSearchFragment(){
+        val transaction = fragmentManager?.beginTransaction()
+        val searchFragment = SearchFragment(this,CreateObjectFacade.instance.tempChallenge.word)
+        transaction?.replace(R.id.frameAuxPhotoFragment, searchFragment)
         transaction?.addToBackStack(null)
         transaction?.commit()
     }

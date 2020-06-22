@@ -1,16 +1,21 @@
 package br.ufpb.dcx.apps4society.educapimanager.view.ui.context.create
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import br.ufpb.dcx.apps4society.educapimanager.R
 import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
 import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.CreateChallengeActivity
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.create.NameCreateChallengeFragment
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.context.CreateContextActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,15 +23,18 @@ import retrofit2.Response
 class SucessCreateContextFragment : Fragment() {
     private var TAG : String = "SucessCreateContextFragment"
     private lateinit var tvSucess : TextView
+    private lateinit var continue_to_challenge : Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_context_create_sucess, container, false)
         tvSucess = root.findViewById(R.id.tvSucess)
+        continue_to_challenge = root.findViewById(R.id.continue_to_challenge);
+
         tvSucess.text = "Contexto '" + CreateObjectFacade.instance.tempContext.name + "' criado."
+
         saveContext()
         return root
     }
-
     private fun saveContext(){
         val call : Call<Void> = RetrofitInitializer().contextService().insert(CreateObjectFacade.instance.tempContext)
 
@@ -39,7 +47,6 @@ class SucessCreateContextFragment : Fragment() {
                     Toast.makeText(context, "Erro ao criar contexto!", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<Void?>?, t: Throwable?) {
                 Toast.makeText(context, "Erro ao se comunicar com o serviço!", Toast.LENGTH_SHORT).show()
             }

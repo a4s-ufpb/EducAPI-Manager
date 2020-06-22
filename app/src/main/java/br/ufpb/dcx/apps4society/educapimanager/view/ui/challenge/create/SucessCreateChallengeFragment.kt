@@ -20,6 +20,7 @@ class SucessCreateChallengeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_challenge_create_sucess, container, false)
+        CreateObjectFacade.instance.tempChallenge.creator = CreateObjectFacade.instance.tempSession.creator;
         tvSucess = root.findViewById(R.id.tvStatusChallengeCreation)
         tvSucess.text = "Desafio '" + CreateObjectFacade.instance.tempChallenge.word + "' criado."
         saveChallenge()
@@ -33,9 +34,9 @@ class SucessCreateChallengeFragment : Fragment() {
             override fun onResponse(call: Call<Void?>?, response: Response<Void?>?) {
                 if(response?.isSuccessful!!){
                     Toast.makeText(context, "Desafio criado com sucesso!", Toast.LENGTH_SHORT).show()
-                    CreateObjectFacade.instance.clearTempChallenge()
+                    //CreateObjectFacade.instance.clearTempChallenge()
                 } else {
-                    Toast.makeText(context, "Erro ao criar Desafio!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Erro ao criar Desafio!"+response.code(), Toast.LENGTH_SHORT).show()
                 }
             }
 

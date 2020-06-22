@@ -3,6 +3,8 @@
     <color name="colorPrimary">#017B8A</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#13A8AE</color>
+    <color name="white">#FFFFFFFF</color>
     <color name="slogan_app_color">#7D7D7D</color>
     <color name="not_selected_item">#B7FFFFFF</color>
+    <color name="crimson">#DC143C</color>
 </resources>

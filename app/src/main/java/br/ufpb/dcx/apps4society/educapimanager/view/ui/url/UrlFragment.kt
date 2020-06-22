@@ -73,7 +73,7 @@ class UrlFragment(fragment : Fragment) : Fragment(), View.OnClickListener{
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btnConfirmUrl -> {
-                fragmentManager?.popBackStack()
+                this.fragmentManager?.popBackStack()
                 activeTouchScreem()
                 if (type.equals(IMAGE_URL)) (fragment as LoadImageUrlListener).loadImage()
             }

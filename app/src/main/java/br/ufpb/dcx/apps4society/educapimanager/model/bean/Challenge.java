@@ -3,6 +3,8 @@ package br.ufpb.dcx.apps4society.educapimanager.model.bean;
 import java.util.HashSet;
 import java.util.Set;
 
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.UserDTO;
+
 
 /**
  * Represents a Challenge for exercises or games based on words.
@@ -16,11 +18,11 @@ public class Challenge{
 
 	private Long id;
 	private String word;
-	private User creator;
+	private UserDTO creator;
 	private String soundUrl;
 	private String videoUrl;
 	private String imageUrl;
-	private Set<Context> contexts = new HashSet<Context>();
+	//private Set<Context> contexts = new HashSet<Context>();
 	
 	/**
 	 * Empty Constructor.
@@ -35,7 +37,7 @@ public class Challenge{
 	 * @param videoUrl The URL of a video representing this Challenge.
 	 * @param imageUrl The imageUrl representing this Challenge.
 	 */
-	public Challenge(Long id, String word, User creator, String imageUrl, String soundUrl, String videoUrl) {
+	public Challenge(Long id, String word, UserDTO creator, String imageUrl, String soundUrl, String videoUrl) {
 		this.id = id;
 		this.word = word;
 		this.creator = creator;
@@ -87,7 +89,7 @@ public class Challenge{
 	 * 
 	 * @return the creator that owns this Challenge.
 	 */
-	public User getCreator() {
+	public UserDTO getCreator() {
 		return this.creator;
 	}
 
@@ -97,7 +99,7 @@ public class Challenge{
 	 * @param creator
 	 *            the new creator that owns this Challenge.
 	 */
-	public void setCreator(User creator) {
+	public void setCreator(UserDTO creator) {
 		this.creator = creator;
 	}
 
@@ -106,9 +108,9 @@ public class Challenge{
 	 *
 	 * @return the Contexts related to this Challenge.
 	 */
-	public Set<Context> getContexts() {
-		return this.contexts;
-	}
+	//public Set<Context> getContexts() {
+	//	return this.contexts;
+	//	}
 
 	/**
 	 * Changes the Contexts related to this Challenge.
@@ -116,9 +118,9 @@ public class Challenge{
 	 * @param contexts
 	 *            the Contexts related to this Challenge.
 	 */
-	public void setContexts(Set<Context> contexts) {
-		this.contexts = contexts;
-	}
+	//public void setContexts(Set<Context> contexts) {
+	//	this.contexts = contexts;
+	//}
 
 	/**
 	 * Returns the soundUrl for this Challenge.
@@ -205,7 +207,7 @@ public class Challenge{
 	@Override
 	public String toString() {
 		return "Challenge [id=" + id + ", word=" + word + ", creator=" + creator + ", soundUrl=" + soundUrl
-				+ ", videoUrl=" + videoUrl + ", imageUrl=" + imageUrl + ", contexts=" + contexts + "]";
+				+ ", videoUrl=" + videoUrl + ", imageUrl=" + imageUrl +"]";
 	}
 
 

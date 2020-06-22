@@ -24,12 +24,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvContextImageName">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnOpenCam"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_photo_add_xhdpi"
+            android:drawableTop="@drawable/reference_photo_add"
             android:text="Câmera"
             app:backgroundTint="@color/colorAccent" />
 
@@ -41,12 +41,12 @@
             android:gravity="center"
             android:text="Ou " />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnOpenGalery"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_galery_add_xhdpi"
+            android:drawableTop="@drawable/reference_galery_add"
             android:drawablePadding="2dp"
             android:text="Galeria"
             app:backgroundTint="@color/colorAccent" />
@@ -59,7 +59,7 @@
             android:gravity="center"
             android:text="Ou " />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnImageUrl"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
+<!--
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -95,7 +95,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
+-->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"

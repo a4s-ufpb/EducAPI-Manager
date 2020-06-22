@@ -12,11 +12,12 @@ import br.ufpb.dcx.apps4society.educapimanager.R
 import br.ufpb.dcx.apps4society.educapimanager.utils.SearchEngineClient
 import com.google.api.services.customsearch.model.Result
 
-class SearchFragment  : Fragment(), View.OnClickListener{
-
+class SearchFragment(fragment : Fragment, query : String)  : Fragment(), View.OnClickListener{
+    private var query:String = query
     private lateinit var rv : RecyclerView
     private lateinit var laymanager : GridLayoutManager
     private lateinit var searchEngine : SearchEngineClient
+    private var fragment:Fragment = fragment
 
     private  var  resultado :List<Result> = ArrayList()
 
@@ -36,20 +37,23 @@ class SearchFragment  : Fragment(), View.OnClickListener{
 
         laymanager = GridLayoutManager(context,2,RecyclerView.VERTICAL,false)
 
-        resultado = searchEngine.search("cavalo")
+        resultado = searchEngine.search(query)
+
         fillRecycleView(resultado)
-        rv.adapter = this.context?.let { SearchListAdapter(resultado, it) }
+
+        rv.adapter = this.context?.let { SearchListAdapter(resultado, it,this) }
 
         return root
     }
 
     fun fillRecycleView(resultado : List<Result>){
         rv.layoutManager = laymanager
-        rv.adapter = context?.let { SearchListAdapter(resultado, it) }
+        rv.adapter = context?.let { SearchListAdapter(resultado, it,this) }
     }
 
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+        TODO("Ver o que da para botar aqui")
     }
+
 
 }

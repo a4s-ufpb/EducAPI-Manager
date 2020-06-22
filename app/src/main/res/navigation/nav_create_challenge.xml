@@ -49,6 +49,15 @@
         android:id="@+id/nav_challenge_sucess"
         android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.create.SucessCreateChallengeFragment"
         android:label="@string/label_create_challenge"
-        tools:layout="@layout/fragment_challenge_create_sucess" />
+        tools:layout="@layout/fragment_challenge_create_sucess" >
+        <action
+            android:id="@+id/action_nav_challenge_sucess_to_nav_choose_context2"
+            app:destination="@id/nav_choose_context" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_choose_context"
+        android:name="br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.create.ChooseContextOnCreateChallenge"
+        android:label="fragment_nav_choose_context"
+        tools:layout="@layout/fragment_nav_choose_context" />
 
 </navigation>

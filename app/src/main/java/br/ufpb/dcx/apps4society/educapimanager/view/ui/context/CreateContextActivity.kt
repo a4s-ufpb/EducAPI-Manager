@@ -1,5 +1,6 @@
 package br.ufpb.dcx.apps4society.educapimanager.view.ui.context
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -8,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import br.ufpb.dcx.apps4society.educapimanager.R
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.CreateChallengeActivity
 
 
 class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
@@ -44,6 +46,7 @@ class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
                 navController.graph.findNode(R.id.nav_context_audio) -> navController.navigate(R.id.action_nav_context_audio_to_nav_context_sucess)
 
                 navController.graph.findNode(R.id.nav_context_sucess) -> finish()
+
             }
         }
     }

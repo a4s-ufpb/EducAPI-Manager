@@ -17,6 +17,9 @@ class NameCreateContextFragment : Fragment() {
 
     private var TAG : String = "NameCreateContextFragment"
     private lateinit var tvName : TextInputLayout
+    //TODO("Implementar o Aviso de obrigatoriedade do nome.   OBS: xml está comentado")
+    private lateinit var tvWarning: TextView
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_create_context_1_name, container, false)

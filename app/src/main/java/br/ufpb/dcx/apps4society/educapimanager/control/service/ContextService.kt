@@ -4,9 +4,7 @@ import br.ufpb.dcx.apps4society.educapimanager.model.bean.Context
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextNewDTO
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 interface ContextService{
@@ -14,14 +12,20 @@ interface ContextService{
     fun find(id: Long?)
 
     @POST("contexts")
-    fun insert(@Body context : ContextNewDTO) : Call<Void>
+    fun insert(@Body context : Context) : Call<Void>
 
-    fun update()
+    @PUT("contexts/{id}")
+    fun update (@Body context : Context,@Path("id") id :Long ) : Call<Void>
+
+
 
     fun delete(id: Long?)
 
     @GET("contexts")
     fun findAll() : Call<List<ContextDTO>>
+
+    @GET("contexts")
+    fun findAllContexts() : Call<List<Context>>
 
     fun findPage(
         page: Int?,

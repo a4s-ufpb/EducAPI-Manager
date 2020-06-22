@@ -5,16 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import br.ufpb.dcx.apps4society.educapimanager.R
+import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.EncodeStrategy
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.api.services.customsearch.model.Result
 
-class SearchListAdapter (private var resultado : List<Result>, context:Context) : RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
+class SearchListAdapter (private var resultado : List<Result>, context:Context,fragment: Fragment) : RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
 
     private var fragmentContext : Context = context
+
+    private var fragmento : Fragment = fragment
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,7 +34,15 @@ class SearchListAdapter (private var resultado : List<Result>, context:Context) 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        loadImage(resultado[position].pagemap["cse_image"]?.get(0)?.get("src").toString(),holder.img)
+        try {
+            loadImage(resultado[position].pagemap["cse_image"]?.get(0)?.get("src").toString(),holder.img)
+        }catch(e :NullPointerException){
+            Toast.makeText(fragmentContext,"Imagem Invalida, Tente escolher Outra",Toast.LENGTH_SHORT).show();
+        }
+        holder.itemView.setOnClickListener {
+            CreateObjectFacade.instance.tempContext.imageUrl = resultado[position].pagemap["cse_image"]?.get(0)?.get("src").toString();
+            fragmento.fragmentManager?.popBackStack()
+        }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInitializer {
-    private var BASE_URL : String = "https://educapi.herokuapp.com/"
+    private var BASE_URL : String = "https://educapi-v2.herokuapp.com/"
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
@@ -12,8 +12,10 @@ class RetrofitInitializer {
         .build()
 
 
-    fun contextService() = retrofit.create(ContextService::class.java)
+    fun contextService(): ContextService = retrofit.create(ContextService::class.java)
 
-    fun challengeService() = retrofit.create(ChallengeService::class.java)
+    fun challengeService(): ChallengeService = retrofit.create(ChallengeService::class.java)
+
+    fun userService(): UserService = retrofit.create(UserService::class.java)
 
 }

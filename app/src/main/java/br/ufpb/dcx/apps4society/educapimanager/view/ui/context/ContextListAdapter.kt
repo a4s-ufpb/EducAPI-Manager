@@ -18,7 +18,9 @@ class ContextListAdapter(private var contexts: List<ContextDTO>, fragmentContext
     private var fragmentContext : android.content.Context = fragmentContext
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_context, parent, false)
+
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.card_context, parent, false)
+
         return ViewHolder(v)
     }
 
@@ -59,14 +61,14 @@ class ContextListAdapter(private var contexts: List<ContextDTO>, fragmentContext
 
         Glide.with(fragmentContext)
             .load(imageUrl)
-            .error(erroImg)
+            //.error(erroImg)
             .diskCacheStrategy(diskCacheStrategy)
             .into(themeImageLeft)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var context_name : TextView = itemView.findViewById(R.id.context_name)
-        var bnt_edit_context : Button = itemView.findViewById(R.id.btn_edit_context)
+        //var bnt_edit_context : Button = itemView.findViewById(R.id.btn_edit_context)
         var btn_view_challenges_of_this_context : Button = itemView.findViewById(R.id.btn_view_challenges_of_this_context)
         var context_image : ImageView = itemView.findViewById(R.id.context_image)
 

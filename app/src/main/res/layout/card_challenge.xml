@@ -28,10 +28,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
-
+<!--
             <Button
                 android:id="@+id/btn_edit_challenge"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
                 android:layout_width="39dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="16dp"
@@ -46,7 +47,7 @@
                 app:layout_constraintStart_toEndOf="@+id/challenge_word"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
-
+-->
             <ImageView
                 android:id="@+id/challenge_image"
                 android:layout_width="100dp"

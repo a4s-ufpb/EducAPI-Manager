@@ -57,14 +57,14 @@ class ChallengeListAdapter(private var challenges : List<Challenge>, private var
 
         Glide.with(fragmentContext)
             .load(imageUrl)
-            .error(erroImg)
+           // .error(erroImg)
             .diskCacheStrategy(diskCacheStrategy)
             .into(themeImageLeft)
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var challenge_name : TextView = itemView.findViewById(R.id.challenge_word)
-        var bnt_edit_challenge : Button = itemView.findViewById(R.id.btn_edit_challenge)
+        //var bnt_edit_challenge : Button = itemView.findViewById(R.id.btn_edit_challenge)
         var challenge_image : ImageView = itemView.findViewById(R.id.challenge_image)
 
     }
