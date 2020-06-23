@@ -5,6 +5,7 @@ import br.ufpb.dcx.apps4society.educapimanager.model.bean.Context
 import br.ufpb.dcx.apps4society.educapimanager.model.bean.Session
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.ChallengeDTO
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.ChallengeNewDTO
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextNewDTO
 
 class CreateObjectFacade {
@@ -33,6 +34,7 @@ class CreateObjectFacade {
         tempChallenge.videoUrl = null
         tempChallenge.soundUrl = null
         tempChallenge.creator = null
+        tempChallenge.contexts = HashSet<ContextDTO>()
     }
 
     fun clearTempSession(){

@@ -3,6 +3,7 @@ package br.ufpb.dcx.apps4society.educapimanager.model.bean;
 import java.util.HashSet;
 import java.util.Set;
 
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO;
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.UserDTO;
 
 
@@ -22,7 +23,7 @@ public class Challenge{
 	private String soundUrl;
 	private String videoUrl;
 	private String imageUrl;
-	//private Set<Context> contexts = new HashSet<Context>();
+	private Set<ContextDTO> contexts = new HashSet<>();
 	
 	/**
 	 * Empty Constructor.
@@ -37,13 +38,14 @@ public class Challenge{
 	 * @param videoUrl The URL of a video representing this Challenge.
 	 * @param imageUrl The imageUrl representing this Challenge.
 	 */
-	public Challenge(Long id, String word, UserDTO creator, String imageUrl, String soundUrl, String videoUrl) {
+	public Challenge(Long id, String word, UserDTO creator, String imageUrl, String soundUrl, String videoUrl,HashSet<ContextDTO> contexts) {
 		this.id = id;
 		this.word = word;
 		this.creator = creator;
 		this.soundUrl = soundUrl;
 		this.videoUrl = videoUrl;
 		this.imageUrl = imageUrl;
+		this.contexts = contexts;
 	}
 	
 	/**
@@ -108,9 +110,9 @@ public class Challenge{
 	 *
 	 * @return the Contexts related to this Challenge.
 	 */
-	//public Set<Context> getContexts() {
-	//	return this.contexts;
-	//	}
+	public Set<ContextDTO> getContexts() {
+		return this.contexts;
+		}
 
 	/**
 	 * Changes the Contexts related to this Challenge.
@@ -118,9 +120,9 @@ public class Challenge{
 	 * @param contexts
 	 *            the Contexts related to this Challenge.
 	 */
-	//public void setContexts(Set<Context> contexts) {
-	//	this.contexts = contexts;
-	//}
+	public void setContexts(Set<ContextDTO> contexts) {
+		this.contexts = contexts;
+	}
 
 	/**
 	 * Returns the soundUrl for this Challenge.

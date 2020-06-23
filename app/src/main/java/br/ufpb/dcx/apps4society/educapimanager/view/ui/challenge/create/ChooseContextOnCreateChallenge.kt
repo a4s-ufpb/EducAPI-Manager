@@ -41,6 +41,13 @@ class ChooseContextOnCreateChallenge : Fragment() {
 
         listview = root.findViewById(R.id.listview_choose)
 
+        listview.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            CreateObjectFacade.instance.tempChallenge.contexts.add(ContextDTO(contextos[position]))
+            contextos[position].challenges.add(CreateObjectFacade.instance.tempChallenge)
+            updateContext(contextos[position])
+            insertChallenge(CreateObjectFacade.instance.tempChallenge)
+        }
+
         return root
     }
 
@@ -71,13 +78,34 @@ class ChooseContextOnCreateChallenge : Fragment() {
 
         call.enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Toast.makeText(context,"Deu tudo Errado: "+t.message,Toast.LENGTH_SHORT).show()
-                CreateObjectFacade.instance.clearTempChallenge()
+                Toast.makeText(context,"Algo deu Errado: "+t.message,Toast.LENGTH_SHORT).show()
+
             }
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.code() == 200 || response.code() == 204){
-                    Toast.makeText(context,"Deu tudo certo",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,"OK, desafio salvo com sucesso",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        })
+    }
+
+    fun insertChallenge(c:br.ufpb.dcx.apps4society.educapimanager.model.bean.Challenge){
+        val call = RetrofitInitializer().challengeService().insert(c)
+
+        call.enqueue(object : Callback<Void> {
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Toast.makeText(context,"Desafio não cadastrado",Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if(response.isSuccessful){
+                    Toast.makeText(context,"Desafio Cadastrado Com sucesso",Toast.LENGTH_LONG).show()
+                    CreateObjectFacade.instance.clearTempChallenge()
+                }
+                else{
+                    Toast.makeText(context,"Algo Deu Errado, Tente Novamente"+response.code(),Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -89,7 +117,7 @@ class ChooseContextOnCreateChallenge : Fragment() {
         for (c:br.ufpb.dcx.apps4society.educapimanager.model.bean.Context in contexts){
             names.add(c.name)
         }
-        val adapter = context?.let { ArrayAdapter(it,R.layout.fragment_nav_choose_context,R.id.text_view_list,names) }
+        val adapter = context?.let { ArrayAdapter(it,R.layout.sample_text_view_list,R.id.text_view_list,names) }
 
         listview.adapter = adapter
     }

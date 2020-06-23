@@ -55,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         btn_entrar.setOnClickListener(v -> {
-            System.out.println(auth);
             try {
                 if(autorizar(edtTxEmail.getText().toString(),edtTxPassword.getText().toString())){
                    Intent next = new Intent();
@@ -116,9 +115,13 @@ public class LoginActivity extends AppCompatActivity {
 
   private boolean validar(UserDTO creator){
         boolean autorizacao = false;
-        if(userAuth.equals(creator)){
-          CreateObjectFacade.Companion.getInstance().setTempSession(new Session(userAuth));
-          autorizacao = true;
+        try {
+            if (userAuth.equals(creator)) {
+                CreateObjectFacade.Companion.getInstance().setTempSession(new Session(userAuth));
+                autorizacao = true;
+            }
+        }catch(NullPointerException e){
+            Toast.makeText(this,"Algo Deu Errado, Por favor Reinicie o Aplicativo",Toast.LENGTH_LONG).show();
       }
         return autorizacao;
   }

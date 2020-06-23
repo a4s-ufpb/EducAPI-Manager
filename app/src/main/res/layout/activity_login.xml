@@ -92,7 +92,7 @@
         android:text="ENTRAR"
         android:textSize="18sp"
         />
-
+<!--
     <TextView
         android:id="@+id/lostPassword"
         android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
         android:text="Esqueci a senha"
         android:layout_gravity="start|bottom"
         />
-
+-->
     <TextView
         android:id="@+id/withoutRegister"
         android:layout_width="wrap_content"

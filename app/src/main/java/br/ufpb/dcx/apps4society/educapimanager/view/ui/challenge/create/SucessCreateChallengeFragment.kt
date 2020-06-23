@@ -23,7 +23,7 @@ class SucessCreateChallengeFragment : Fragment() {
         CreateObjectFacade.instance.tempChallenge.creator = CreateObjectFacade.instance.tempSession.creator;
         tvSucess = root.findViewById(R.id.tvStatusChallengeCreation)
         tvSucess.text = "Desafio '" + CreateObjectFacade.instance.tempChallenge.word + "' criado."
-        saveChallenge()
+        //saveChallenge()
         return root
     }
 
@@ -34,7 +34,6 @@ class SucessCreateChallengeFragment : Fragment() {
             override fun onResponse(call: Call<Void?>?, response: Response<Void?>?) {
                 if(response?.isSuccessful!!){
                     Toast.makeText(context, "Desafio criado com sucesso!", Toast.LENGTH_SHORT).show()
-                    //CreateObjectFacade.instance.clearTempChallenge()
                 } else {
                     Toast.makeText(context, "Erro ao criar Desafio!"+response.code(), Toast.LENGTH_SHORT).show()
                 }
