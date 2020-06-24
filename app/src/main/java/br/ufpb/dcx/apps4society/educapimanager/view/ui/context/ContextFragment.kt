@@ -31,21 +31,21 @@ class ContextFragment : Fragment() {
         return root
     }
 
-    fun fillRecycleView(contexts : List<ContextDTO>){
+    fun fillRecycleView(contexts : List<Context>){
         recyclerView.layoutManager = layManager
         recyclerView.adapter = context?.let { ContextListAdapter(contexts, it) }
     }
 
     fun getAllContextsFromService(){
-        val call = RetrofitInitializer().contextService().findAll()
-        call.enqueue(object: Callback<List<ContextDTO>?> {
-            override fun onResponse(call: Call<List<ContextDTO>?>?, response: Response<List<ContextDTO>?>?) {
+        val call = RetrofitInitializer().contextService().findAllContexts()
+        call.enqueue(object: Callback<List<Context>?> {
+            override fun onResponse(call: Call<List<Context>?>?, response: Response<List<Context>?>?) {
                 response?.body()?.let {
                     fillRecycleView(it)
                 }
             }
 
-            override fun onFailure(call: Call<List<ContextDTO>?>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<Context>?>?, t: Throwable?) {
                 Log.e(TAG, t?.message)
             }
         })

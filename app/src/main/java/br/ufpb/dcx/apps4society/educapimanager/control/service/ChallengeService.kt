@@ -17,7 +17,8 @@ interface ChallengeService{
     @PUT("challenges/{id}")
     fun update (@Body challenge : Challenge, @Path("id") id :Long ) : Call<Void>
 
-    fun delete(id: Long?)
+    @DELETE("challenges/{id}")
+    fun delete(@Path("id")id: Long) : Call<Void>
 
     @GET("challenges")
     fun findAll() : Call<List<Challenge>>

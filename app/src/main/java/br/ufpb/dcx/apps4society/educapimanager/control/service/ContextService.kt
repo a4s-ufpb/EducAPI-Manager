@@ -18,8 +18,8 @@ interface ContextService{
     fun update (@Body context : Context,@Path("id") id :Long ) : Call<Void>
 
 
-
-    fun delete(id: Long?)
+    @DELETE("contexts/{id}")
+    fun delete(@Path("id")id: Long): Call<Void>
 
     @GET("contexts")
     fun findAll() : Call<List<ContextDTO>>
