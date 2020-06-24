@@ -29,7 +29,7 @@ class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun setToolbar(){
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
-        toolbar.setTitle(navController.currentDestination!!.label)
+        toolbar.title = navController.currentDestination!!.label
 
         setSupportActionBar(toolbar)
     }

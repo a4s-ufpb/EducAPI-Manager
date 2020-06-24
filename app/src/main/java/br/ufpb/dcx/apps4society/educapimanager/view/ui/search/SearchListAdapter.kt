@@ -15,10 +15,10 @@ import com.bumptech.glide.load.EncodeStrategy
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.api.services.customsearch.model.Result
 
-class SearchListAdapter (private var resultado : List<Result>, context:Context,fragment: Fragment) : RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
+class SearchListAdapter (private var resultado : List<Result>, context:Context,fragment: Fragment,tag:String) : RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
 
     private var fragmentContext : Context = context
-
+    private var TAG : String = tag
     private var fragmento : Fragment = fragment
 
     override fun onCreateViewHolder(
@@ -40,7 +40,11 @@ class SearchListAdapter (private var resultado : List<Result>, context:Context,f
             Toast.makeText(fragmentContext,"Imagem Invalida, Tente escolher Outra",Toast.LENGTH_SHORT).show();
         }
         holder.itemView.setOnClickListener {
-            CreateObjectFacade.instance.tempContext.imageUrl = resultado[position].pagemap["cse_image"]?.get(0)?.get("src").toString();
+            if(TAG == "challenge") {
+                CreateObjectFacade.instance.tempChallenge.imageUrl = resultado[position].pagemap["cse_image"]?.get(0)?.get("src").toString();
+            }else {
+                CreateObjectFacade.instance.tempContext.imageUrl = resultado[position].pagemap["cse_image"]?.get(0)?.get("src").toString();
+            }
             fragmento.fragmentManager?.popBackStack()
         }
     }

@@ -71,7 +71,7 @@ class PhotoCreateContextFragment : Fragment(), View.OnClickListener,
     }
     private fun loadImageSearchFragment(){
         val transaction = fragmentManager?.beginTransaction()
-        val searchFragment = SearchFragment(this, CreateObjectFacade.instance.tempContext.name)
+        val searchFragment = SearchFragment(this, CreateObjectFacade.instance.tempContext.name,"context")
         transaction?.replace(R.id.frameAuxPhotoFragment, searchFragment)
         transaction?.addToBackStack(null)
         transaction?.commit()
