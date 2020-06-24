@@ -20,4 +20,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--CONTATOS-->
+    <string name="dev" >Luis Vitor Amorim</string>
+    <string name="devEmail">luis.vitor@dcx.ufpb.br</string>
+    <string name="coordenadora">Ayla Rebouças</string>
+    <string name="coordenadoraEmail">ayla@dcx.ufpb.br</string>
+    <string name="dev2">Raimundo Marcos</string>
+    <string name="dev2Email">raimundo.marcos@dcx.ufpb.br</string>
+
 </resources>

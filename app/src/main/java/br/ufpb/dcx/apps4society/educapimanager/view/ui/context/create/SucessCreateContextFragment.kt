@@ -23,12 +23,10 @@ import retrofit2.Response
 class SucessCreateContextFragment : Fragment() {
     private var TAG : String = "SucessCreateContextFragment"
     private lateinit var tvSucess : TextView
-    private lateinit var continue_to_challenge : Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_context_create_sucess, container, false)
         tvSucess = root.findViewById(R.id.tvSucess)
-        continue_to_challenge = root.findViewById(R.id.continue_to_challenge);
 
         tvSucess.text = "Contexto '" + CreateObjectFacade.instance.tempContext.name + "' criado."
 
