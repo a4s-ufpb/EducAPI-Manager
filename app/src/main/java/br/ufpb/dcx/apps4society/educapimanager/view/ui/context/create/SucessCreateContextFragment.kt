@@ -28,6 +28,8 @@ class SucessCreateContextFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_context_create_sucess, container, false)
         tvSucess = root.findViewById(R.id.tvSucess)
 
+        CreateObjectFacade.instance.tempContext.creator = CreateObjectFacade.instance.tempSession.creator
+
         tvSucess.text = "Contexto '" + CreateObjectFacade.instance.tempContext.name + "' criado."
 
         saveContext()
