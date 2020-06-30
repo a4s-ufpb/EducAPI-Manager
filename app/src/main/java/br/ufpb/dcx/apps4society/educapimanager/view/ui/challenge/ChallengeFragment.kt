@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.ufpb.dcx.apps4society.educapimanager.R
+import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
 import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer
 import br.ufpb.dcx.apps4society.educapimanager.model.bean.Challenge
 import retrofit2.Call
@@ -34,8 +35,8 @@ class ChallengeFragment : Fragment() {
         recyclerView.adapter = context?.let { ChallengeListAdapter(challenges, it) }
     }
 
-    fun getAllChallengesFromService(){
-        val call = RetrofitInitializer().challengeService().findAll()
+    fun getChallengesFromService(){
+        val call = RetrofitInitializer().challengeService().findByUser(CreateObjectFacade.instance.tempSession.creator.id)
         call.enqueue(object: Callback<List<Challenge>?> {
             override fun onResponse(call: Call<List<Challenge>?>?, response: Response<List<Challenge>?>?) {
                 response?.body()?.let {
@@ -51,6 +52,6 @@ class ChallengeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        getAllChallengesFromService()
+        getChallengesFromService()
     }
 }

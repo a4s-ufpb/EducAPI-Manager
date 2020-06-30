@@ -22,6 +22,9 @@ interface ContextService{
     fun delete(@Path("id")id: Long): Call<Void>
 
     @GET("contexts")
+    fun findByUser(@Query("user") id:Long) : Call<List<Context>>
+
+    @GET("contexts")
     fun findAll() : Call<List<ContextDTO>>
 
     @GET("contexts")

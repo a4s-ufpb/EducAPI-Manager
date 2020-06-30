@@ -21,6 +21,9 @@ interface ChallengeService{
     fun delete(@Path("id")id: Long) : Call<Void>
 
     @GET("challenges")
+    fun findByUser(@Query("user")id:Long):Call<List<Challenge>>
+
+    @GET("challenges")
     fun findAll() : Call<List<Challenge>>
 
     fun findPage(

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.ufpb.dcx.apps4society.educapimanager.R
+import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
 import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer
 import br.ufpb.dcx.apps4society.educapimanager.model.bean.Context
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO
@@ -36,12 +37,13 @@ class ContextFragment : Fragment() {
         recyclerView.adapter = context?.let { ContextListAdapter(contexts, it) }
     }
 
-    fun getAllContextsFromService(){
-        val call = RetrofitInitializer().contextService().findAllContexts()
+    fun getContextsFromService(){
+        val call = RetrofitInitializer().contextService().findByUser(CreateObjectFacade.instance.tempSession.creator.id)
         call.enqueue(object: Callback<List<Context>?> {
             override fun onResponse(call: Call<List<Context>?>?, response: Response<List<Context>?>?) {
                 response?.body()?.let {
                     fillRecycleView(it)
+
                 }
             }
 
@@ -53,6 +55,7 @@ class ContextFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        getAllContextsFromService()
+        getContextsFromService()
     }
+
 }
