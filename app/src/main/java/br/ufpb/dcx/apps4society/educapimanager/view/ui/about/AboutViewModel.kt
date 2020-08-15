@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class AboutViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Context Fragment"
+        value = "Não disponivel nesta versão"
     }
     val text: LiveData<String> = _text
 }

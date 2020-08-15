@@ -36,7 +36,7 @@ class ChallengeFragment : Fragment() {
     }
 
     fun getChallengesFromService(){
-        val call = RetrofitInitializer().challengeService().findByUser(CreateObjectFacade.instance.tempSession.creator.id)
+        val call = RetrofitInitializer().challengeService().findAll()
         call.enqueue(object: Callback<List<Challenge>?> {
             override fun onResponse(call: Call<List<Challenge>?>?, response: Response<List<Challenge>?>?) {
                 response?.body()?.let {

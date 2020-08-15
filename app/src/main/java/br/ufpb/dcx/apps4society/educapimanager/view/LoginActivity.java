@@ -55,21 +55,27 @@ public class LoginActivity extends AppCompatActivity {
 
 
         btn_entrar.setOnClickListener(v -> {
-            try {
-                if(autorizar(edtTxEmail.getText().toString(),edtTxPassword.getText().toString())){
-                   Intent next = new Intent();
-                   next.setClass(context, NavDrawerActivity.class);
-                   startActivity(next);
-               }else{
-                   password_input.setBoxBackgroundColor(getResources().getColor(R.color.crimson));
-                   password_input.setErrorEnabled(true);
-                   password_input.setBoxBackgroundColor(getResources().getColor(R.color.white));
-                   password_input.setError("Senha incorreta, Tente Novamente");
-               }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if(edtTxEmail.getText().toString().isEmpty() || edtTxPassword.getText().toString().isEmpty()){
+                Toast.makeText(this,"Digite seu email e sua senha",Toast.LENGTH_SHORT).show();
             }
-        });
+            else{
+                try {
+                    if (autorizar(edtTxEmail.getText().toString(), edtTxPassword.getText().toString())) {
+                        Intent next = new Intent();
+                        next.setClass(context, NavDrawerActivity.class);
+                        startActivity(next);
+                    } else {
+                        password_input.setBoxBackgroundColor(getResources().getColor(R.color.crimson));
+                        password_input.setErrorEnabled(true);
+                        password_input.setBoxBackgroundColor(getResources().getColor(R.color.white));
+                        password_input.setError("verifique sua senha e seu email e Tente Novamente");
+
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            });
 
         semCadastro.setOnClickListener(v -> {
             Intent ir = new Intent();
@@ -87,9 +93,6 @@ public class LoginActivity extends AppCompatActivity {
                  break;
             }
         }
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        System.out.println(userAuth);
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
         return validar(tmp);
 
@@ -103,12 +106,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ArrayList<UserDTO>> call, Response<ArrayList<UserDTO>> response) {
                 auth = response.body();
-                Toast.makeText(context,"Usuarios Recuperados",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Faça seu Login",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<ArrayList<UserDTO>> call, Throwable t) {
-                Toast.makeText(context,"Algo Ocorreu Errado",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Ocorreu um erro, Por favor, Reinicie o aplicativo. ",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -127,12 +130,10 @@ public class LoginActivity extends AppCompatActivity {
   }
 
     void pegarUsuarioId(Long id) throws InterruptedException {
-        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
         AuthRunnable g = new AuthRunnable(id);
         Thread t = new Thread(g);
         t.start();
         t.join();
-        System.out.println(g.getCreator());
         userAuth = g.getCreator();
     }
 

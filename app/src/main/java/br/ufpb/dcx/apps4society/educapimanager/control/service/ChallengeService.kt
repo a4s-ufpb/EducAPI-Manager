@@ -14,14 +14,17 @@ interface ChallengeService{
     @POST("challenges")
     fun insert(@Body challenge : Challenge) : Call<Void>
 
+
+
     @PUT("challenges/{id}")
-    fun update (@Body challenge : Challenge, @Path("id") id :Long ) : Call<Void>
+    fun update (@Body challenge : Challenge, @Path("id") id :Long,@Query("user") userid: Long) : Call<Void>
 
     @DELETE("challenges/{id}")
-    fun delete(@Path("id")id: Long) : Call<Void>
+    fun delete(@Path("id")idChallenge: Long,@Query("user") userid: Long) : Call<Void>
 
     @GET("challenges")
     fun findByUser(@Query("user")id:Long):Call<List<Challenge>>
+
 
     @GET("challenges")
     fun findAll() : Call<List<Challenge>>

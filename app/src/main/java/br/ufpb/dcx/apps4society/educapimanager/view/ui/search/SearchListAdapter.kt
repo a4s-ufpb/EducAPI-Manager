@@ -36,7 +36,8 @@ class SearchListAdapter (private var resultado : List<Result>, context:Context,f
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         try {
             loadImage(resultado[position].pagemap["cse_image"]?.get(0)?.get("src").toString(),holder.img)
-        }catch(e :NullPointerException){
+        }
+        catch(e :NullPointerException){
             Toast.makeText(fragmentContext,"Imagem Invalida, Tente escolher Outra",Toast.LENGTH_SHORT).show();
         }
         holder.itemView.setOnClickListener {

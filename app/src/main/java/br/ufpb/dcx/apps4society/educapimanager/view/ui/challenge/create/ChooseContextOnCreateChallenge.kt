@@ -23,6 +23,7 @@ class ChooseContextOnCreateChallenge : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+    
     ): View? {
         getContextsFromService()
          val root = inflater.inflate(R.layout.fragment_nav_choose_context, container, false)
@@ -32,6 +33,7 @@ class ChooseContextOnCreateChallenge : Fragment() {
         listview.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             CreateObjectFacade.instance.tempChallenge.contexts.add(ContextDTO(contextos[position]))
             contextos[position].challenges.add(CreateObjectFacade.instance.tempChallenge)
+            contextos[position].creator = CreateObjectFacade.instance.tempSession.creator
             updateContext(contextos[position])
             insertChallenge(CreateObjectFacade.instance.tempChallenge)
         }
@@ -53,6 +55,7 @@ class ChooseContextOnCreateChallenge : Fragment() {
                 call: Call<List<br.ufpb.dcx.apps4society.educapimanager.model.bean.Context>>,
                 response: Response<List<br.ufpb.dcx.apps4society.educapimanager.model.bean.Context>>
             ) {
+
                 contextos = response.body()!!
                 initializeSpinner(response.body()!!)
                 Toast.makeText(context,"Lista recuperada com sucesso",Toast.LENGTH_SHORT).show()
@@ -62,7 +65,7 @@ class ChooseContextOnCreateChallenge : Fragment() {
     }
 
     fun updateContext(c:br.ufpb.dcx.apps4society.educapimanager.model.bean.Context){
-        val call = RetrofitInitializer().contextService().update(c,c.id)
+        val call = RetrofitInitializer().contextService().update(c,c.id,CreateObjectFacade.instance.tempSession.creator.id)
 
         call.enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, t: Throwable) {

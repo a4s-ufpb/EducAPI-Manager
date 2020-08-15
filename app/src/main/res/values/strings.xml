@@ -29,4 +29,10 @@
     <string name="dev2">Raimundo Marcos</string>
     <string name="dev2Email">raimundo.marcos@dcx.ufpb.br</string>
 
+
+
+
+    <string name="api_key" >AIzaSyBKu8O9msyelwJPRG4hsiMEeW7G2NMjmZw</string>
+    <string name="cx_key" >010983324265191686624:wanhkrbv8rc</string>
+
 </resources>

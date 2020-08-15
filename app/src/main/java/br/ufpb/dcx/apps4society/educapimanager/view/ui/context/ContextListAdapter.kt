@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import br.ufpb.dcx.apps4society.educapimanager.R
+import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
 import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer
 import br.ufpb.dcx.apps4society.educapimanager.model.bean.Context
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO
@@ -38,7 +39,7 @@ class ContextListAdapter(private var contexts: List<Context>, fragmentContext: a
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.context_name.text = contexts[position].name
         loadImage(contexts[position].imageUrl, holder.context_image)
-        holder.id_tx_view.text = "id : "+contexts[position].id.toString()
+        holder.id_tx_view.text = "ID : "+contexts[position].id.toString()
         holder.delete.setOnClickListener {delete(contexts[position].id) }
         holder.bnt_edit_context.setOnClickListener{dialog(contexts[position])}
     }
@@ -85,16 +86,19 @@ class ContextListAdapter(private var contexts: List<Context>, fragmentContext: a
         var delete : MaterialButton = itemView.findViewById(R.id.excluir_contexto)
 
     }
+
     private fun delete (id:Long){
-        val call = RetrofitInitializer().contextService().delete(id)
+        val call = RetrofitInitializer().contextService().delete(id,CreateObjectFacade.instance.tempSession.creator.id)
         call.enqueue(object: Callback<Void>{
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Toast.makeText(fragmentContext,"Não foi possivel deletar",Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragmentContext,"Não foi possivel estabelecer uma conexão",Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if(response.isSuccessful){
                     Toast.makeText(fragmentContext,"Contexto deletado com sucesso",Toast.LENGTH_SHORT).show()
+                }else if(response.code() == 401){
+                    Toast.makeText(fragmentContext,"Você não tem permissão para excluir esse contexto",Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(fragmentContext,"Ocorreu um problema ao tentar deletar o contexto",Toast.LENGTH_SHORT).show()
                 }
@@ -103,7 +107,7 @@ class ContextListAdapter(private var contexts: List<Context>, fragmentContext: a
     }
 
     private fun update (c:Context){
-        val call = RetrofitInitializer().contextService().update(c,c.id)
+        val call = RetrofitInitializer().contextService().update(c,c.id,CreateObjectFacade.instance.tempSession.creator.id)
 
         call.enqueue(object : Callback<Void>{
             override fun onFailure(call: Call<Void>, t: Throwable) {
@@ -113,6 +117,8 @@ class ContextListAdapter(private var contexts: List<Context>, fragmentContext: a
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if(response.isSuccessful){
                     Toast.makeText(fragmentContext,"Contexto atualizado com sucesso",Toast.LENGTH_SHORT).show()
+                }else if(response.code() == 403){
+                    Toast.makeText(fragmentContext,"Você não pode editar esse contexto",Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(fragmentContext,"Ocorreu um problema ao tentar atualizar o contexto",Toast.LENGTH_SHORT).show()
                 }
@@ -122,7 +128,7 @@ class ContextListAdapter(private var contexts: List<Context>, fragmentContext: a
 
     private fun dialog (c:Context){
         val a  = AlertDialog.Builder(fragmentContext)
-        a.setTitle("Atualizar Tema")
+        a.setTitle("Atualizar Contexto")
         val view = View.inflate(fragmentContext,R.layout.alert_dialog_update_context,null)
         a.setView(view)
         val edtName = view.findViewById<TextInputEditText>(R.id.tiet_name)

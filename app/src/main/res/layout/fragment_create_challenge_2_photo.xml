@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvChallengePhoto">
-
+<!--
         <Button
             android:id="@+id/btnChallengeCam"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -40,15 +40,15 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Ou " />
-
+-->
         <Button
-            android:id="@+id/btnChallengeGalery"
+            android:id="@+id/btnChallengeImageWeb"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_galery_add_xhdpi"
+            android:drawableTop="@drawable/ic_research"
             android:drawablePadding="2dp"
-            android:text="Galeria"
+            android:text="Web"
             app:backgroundTint="@color/colorAccent" />
 
         <TextView
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/ic_url_xhdpi"
             android:paddingTop="24dp"
-            android:text="URL"
+            android:text="Url"
             app:backgroundTint="@color/colorAccent" />
     </LinearLayout>
 

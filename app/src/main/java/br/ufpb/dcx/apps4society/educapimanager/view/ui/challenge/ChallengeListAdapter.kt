@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import br.ufpb.dcx.apps4society.educapimanager.R
+import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
 import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer
 import br.ufpb.dcx.apps4society.educapimanager.model.bean.Challenge
 import br.ufpb.dcx.apps4society.educapimanager.model.bean.Context
@@ -25,7 +26,7 @@ import retrofit2.Response
 class ChallengeListAdapter(private var challenges : List<Challenge>, private var fragmentContext: android.content.Context) : RecyclerView.Adapter<ChallengeListAdapter.ViewHolder>() {
     private var TAG : String = "ChallengeListAdapter"
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_challenge, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.card_challenge, parent, false)
         return ViewHolder(v)
     }
 
@@ -34,7 +35,7 @@ class ChallengeListAdapter(private var challenges : List<Challenge>, private var
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.challenge_name.setText(challenges.get(position).word)
+        holder.challenge_name.setText(challenges[position].word)
         loadImage(challenges[position].imageUrl, holder.challenge_image)
         holder.bnt_edit_challenge.setOnClickListener { dialog(challenges[position]) }
         holder.excluir_challenge.setOnClickListener { delete(challenges[position].id) }
@@ -108,17 +109,23 @@ class ChallengeListAdapter(private var challenges : List<Challenge>, private var
     }
 
     private fun update (c:Challenge){
-        val call = RetrofitInitializer().challengeService().update(c,c.id)
+        val call = RetrofitInitializer().challengeService().update(c,c.id,CreateObjectFacade.instance.tempSession.creator.id)
         call.enqueue(object : Callback<Void> {
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Toast.makeText(fragmentContext,"Não foi possivel atualizar o Desafio", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if(response.isSuccessful){
-                    Toast.makeText(fragmentContext,"Desafio atualizado com sucesso",Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(fragmentContext,"Ocorreu um problema ao tentar atualizar o Desafio",Toast.LENGTH_SHORT).show()
+                when {
+                    response.isSuccessful -> {
+                        Toast.makeText(fragmentContext,"Desafio atualizado com sucesso",Toast.LENGTH_SHORT).show()
+                    }
+                    response.code() == 403 -> {
+                        Toast.makeText(fragmentContext,"Você não pode editar esse desafio",Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        Toast.makeText(fragmentContext,"Ocorreu um problema ao tentar atualizar o Desafio",Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 
@@ -126,16 +133,22 @@ class ChallengeListAdapter(private var challenges : List<Challenge>, private var
     }
 
     private fun delete (id:Long){
-        val call = RetrofitInitializer().challengeService().delete(id)
+        val call = RetrofitInitializer().challengeService().delete(id,CreateObjectFacade.instance.tempSession.creator.id)
         call.enqueue(object : Callback<Void>{
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Toast.makeText(fragmentContext,"Não foi possivel deletar o Desafio", Toast.LENGTH_SHORT).show()
             }
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if(response.isSuccessful){
-                    Toast.makeText(fragmentContext,"Desafio deletado com sucesso",Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(fragmentContext,"Ocorreu um problema ao tentar deletar o Desafio",Toast.LENGTH_SHORT).show()
+                when {
+                    response.isSuccessful -> {
+                        Toast.makeText(fragmentContext,"Desafio deletado com sucesso",Toast.LENGTH_SHORT).show()
+                    }
+                    response.code() == 401 -> {
+                        Toast.makeText(fragmentContext,"Você não tem permissão para deletar esse desafio",Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        Toast.makeText(fragmentContext,"Ocorreu um problema ao tentar deletar o desafio",Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         })

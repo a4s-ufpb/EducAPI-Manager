@@ -2,28 +2,29 @@ package br.ufpb.dcx.apps4society.educapimanager.utils;
 
 
 
-import androidx.core.util.Pools;
+import android.content.Context;
 
-import com.google.api.client.googleapis.batch.BatchRequest;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.customsearch.Customsearch;
 import com.google.api.services.customsearch.model.Result;
 import com.google.api.services.customsearch.model.Search;
-
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import br.ufpb.dcx.apps4society.educapimanager.R;
 
 
 public class SearchEngineClient {
-    private static final String API_KEY = "AIzaSyBKu8O9msyelwJPRG4hsiMEeW7G2NMjmZw";
-    private static final String CX_KEY = "010983324265191686624:wanhkrbv8rc";
 
+    private static String API_KEY = null;
+    private static String CX_KEY = null;
     private List<Result> resultado = new ArrayList<>();
 
+    public SearchEngineClient (Context context){
+        API_KEY = context.getResources().getString(R.string.api_key);
+        CX_KEY = context.getResources().getString(R.string.cx_key);
+    }
 
     public  List<Result> search(final String query) {
 
@@ -38,8 +39,6 @@ public class SearchEngineClient {
 
                     } catch (Exception ex) {ex.printStackTrace();}});
                     } catch (Exception e) {e.printStackTrace();}
-
-
             try {
                 customse.setApplicationName("EducAPI Manager");
                 Customsearch.Cse.List list = customse.build().cse().list(query);

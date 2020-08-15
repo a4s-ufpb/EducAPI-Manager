@@ -38,15 +38,13 @@ class ContextFragment : Fragment() {
     }
 
     fun getContextsFromService(){
-        val call = RetrofitInitializer().contextService().findByUser(CreateObjectFacade.instance.tempSession.creator.id)
+        val call = RetrofitInitializer().contextService().findAllContexts()
         call.enqueue(object: Callback<List<Context>?> {
             override fun onResponse(call: Call<List<Context>?>?, response: Response<List<Context>?>?) {
                 response?.body()?.let {
                     fillRecycleView(it)
-
                 }
             }
-
             override fun onFailure(call: Call<List<Context>?>?, t: Throwable?) {
                 Log.e(TAG, t?.message)
             }

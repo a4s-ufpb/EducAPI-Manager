@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvContextImageName">
-
+<!--
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnOpenCam"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -40,15 +40,15 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Ou " />
-
+-->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnOpenGalery"
+            android:id="@+id/btnImageWeb"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/reference_galery_add"
+            android:drawableTop="@drawable/ic_research"
             android:drawablePadding="2dp"
-            android:text="Galeria"
+            android:text="Web"
             app:backgroundTint="@color/colorAccent" />
 
         <TextView

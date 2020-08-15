@@ -55,7 +55,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="60dp"
         app:helperText="Cadastre Seu Nome">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="130dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_gravity="center"
@@ -94,9 +94,9 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="185dp"
+        android:layout_marginBottom="130dp"
         android:layout_gravity="center|bottom"
-        app:helperText="Cadastre uma senha"
+        app:helperText="Senha deve conter de 8 a 12 caracteres"
         app:passwordToggleContentDescription="Mostrar senha"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/design_tint_password_toggle"
@@ -114,6 +114,7 @@
     <Button
         android:id="@+id/btnCadastro"
         style="@style/Widget.MaterialComponents.Button"
+        android:textAppearance="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

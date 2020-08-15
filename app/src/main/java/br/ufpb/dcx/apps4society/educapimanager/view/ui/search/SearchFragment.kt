@@ -33,16 +33,15 @@ class SearchFragment(fragment : Fragment, query : String,tag :String)  : Fragmen
         super.onCreateView(inflater, container, savedInstanceState)
         val root = inflater.inflate(R.layout.fragment_nav_search,container,false)
 
-        searchEngine = SearchEngineClient()
+        searchEngine = SearchEngineClient(context)
         rv = root.findViewById(R.id.search_rv)
 
         laymanager = GridLayoutManager(context,2,RecyclerView.VERTICAL,false)
-
         resultado = searchEngine.search(query)
 
         fillRecycleView(resultado)
 
-        //rv.adapter = this.context?.let { SearchListAdapter(resultado, it,this,TAG) }
+
 
         return root
     }
