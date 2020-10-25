@@ -2,12 +2,10 @@ package br.ufpb.dcx.apps4society.educapimanager.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +21,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufpb.dcx.apps4society.educapimanager.ChallengesByContextActivity;
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.ChallengesByContextActivity;
 import br.ufpb.dcx.apps4society.educapimanager.R;
 import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade;
 import br.ufpb.dcx.apps4society.educapimanager.control.service.ContextsService;
