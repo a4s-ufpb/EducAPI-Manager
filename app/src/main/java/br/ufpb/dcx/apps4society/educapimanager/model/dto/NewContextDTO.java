@@ -2,26 +2,22 @@ package br.ufpb.dcx.apps4society.educapimanager.model.dto;
 
 import java.io.Serializable;
 
-public class ContextNewDTO  implements Serializable{
+public class NewContextDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
-	private Long id;
+
 	private String name;
 	
 	private String imageUrl;
 	private String soundUrl;
 	private String videoUrl;
 	
-	private Long userId;
-	
-	public ContextNewDTO() {}
+	public NewContextDTO() {}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public NewContextDTO(String name, String imageUrl, String soundUrl, String videoUrl) {
+		this.name = name;
+		this.imageUrl = imageUrl;
+		this.soundUrl = soundUrl;
+		this.videoUrl = videoUrl;
 	}
 
 	public String getName() {
@@ -55,13 +51,4 @@ public class ContextNewDTO  implements Serializable{
 	public void setVideoUrl(String videoUrl) {
 		this.videoUrl = videoUrl;
 	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-	
 }

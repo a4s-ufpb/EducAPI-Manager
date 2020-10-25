@@ -2,26 +2,22 @@ package br.ufpb.dcx.apps4society.educapimanager.model.dto;
 
 import java.io.Serializable;
 
-public class ChallengeNewDTO implements Serializable{
+public class NewChallengeDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
-	private Long id;
+
 	private String word;
 	
 	private String soundUrl;
 	private String videoUrl;
 	private String imageUrl;
-
-	private Long userId;
 	
-	public ChallengeNewDTO() {}
+	public NewChallengeDTO() {}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public NewChallengeDTO(String word, String soundUrl, String videoUrl, String imageUrl) {
+		this.word = word;
+		this.soundUrl = soundUrl;
+		this.videoUrl = videoUrl;
+		this.imageUrl = imageUrl;
 	}
 
 	public String getWord() {
@@ -54,14 +50,6 @@ public class ChallengeNewDTO implements Serializable{
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 	
 }
