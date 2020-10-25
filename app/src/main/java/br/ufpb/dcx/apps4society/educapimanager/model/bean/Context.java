@@ -1,9 +1,17 @@
 package br.ufpb.dcx.apps4society.educapimanager.model.bean;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import br.ufpb.dcx.apps4society.educapimanager.model.dto.ChallengeDTO;
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO;
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.NewContextDTO;
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.UserDTO;
 
 /**
@@ -13,13 +21,17 @@ import br.ufpb.dcx.apps4society.educapimanager.model.dto.UserDTO;
  * @author Emerson Dantas
  *
  */
-public class Context{
+@Entity
+public class Context implements Serializable {
+	@PrimaryKey
 	private Long id;
 	private String name;
+	@Ignore
 	private UserDTO creator;
 	private String imageUrl;
 	private String soundUrl;
 	private String videoUrl;
+	@Ignore
 	private Set<Challenge> challenges = new HashSet<>();
 	
 	/**
@@ -43,6 +55,10 @@ public class Context{
 		this.imageUrl = imageUrl;
 		this.soundUrl = soundUrl;
 		this.videoUrl = videoUrl;
+	}
+
+	public NewContextDTO toNewContextDto(Context context){
+		return new NewContextDTO(context.name, context.imageUrl, context.soundUrl, context.videoUrl);
 	}
 
 	/**

@@ -1,9 +1,11 @@
 package br.ufpb.dcx.apps4society.educapimanager.model.bean;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO;
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.NewChallengeDTO;
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.UserDTO;
 
 
@@ -15,7 +17,7 @@ import br.ufpb.dcx.apps4society.educapimanager.model.dto.UserDTO;
  *
  */
 
-public class Challenge{
+public class Challenge implements Serializable {
 
 	private Long id;
 	private String word;
@@ -23,7 +25,7 @@ public class Challenge{
 	private String soundUrl;
 	private String videoUrl;
 	private String imageUrl;
-	private Set<ContextDTO> contexts = new HashSet<>();
+	private Set<Context> contexts = new HashSet<>();
 	
 	/**
 	 * Empty Constructor.
@@ -38,7 +40,7 @@ public class Challenge{
 	 * @param videoUrl The URL of a video representing this Challenge.
 	 * @param imageUrl The imageUrl representing this Challenge.
 	 */
-	public Challenge(Long id, String word, UserDTO creator, String imageUrl, String soundUrl, String videoUrl,HashSet<ContextDTO> contexts) {
+	public Challenge(Long id, String word, UserDTO creator, String imageUrl, String soundUrl, String videoUrl,HashSet<Context> contexts) {
 		this.id = id;
 		this.word = word;
 		this.creator = creator;
@@ -46,6 +48,10 @@ public class Challenge{
 		this.videoUrl = videoUrl;
 		this.imageUrl = imageUrl;
 		this.contexts = contexts;
+	}
+
+	public NewChallengeDTO challengeDTO(Challenge challenge){
+		return new NewChallengeDTO(challenge.getWord(), challenge.getSoundUrl(), challenge.getVideoUrl(), challenge.getImageUrl());
 	}
 	
 	/**
@@ -110,7 +116,7 @@ public class Challenge{
 	 *
 	 * @return the Contexts related to this Challenge.
 	 */
-	public Set<ContextDTO> getContexts() {
+	public Set<Context> getContexts() {
 		return this.contexts;
 		}
 
@@ -120,7 +126,7 @@ public class Challenge{
 	 * @param contexts
 	 *            the Contexts related to this Challenge.
 	 */
-	public void setContexts(Set<ContextDTO> contexts) {
+	public void setContexts(Set<Context> contexts) {
 		this.contexts = contexts;
 	}
 
