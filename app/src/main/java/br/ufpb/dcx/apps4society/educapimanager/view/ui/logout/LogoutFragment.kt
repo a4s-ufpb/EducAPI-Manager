@@ -36,6 +36,7 @@ class LogoutFragment : Fragment() {
             context?.let { it1 -> toLoginActivity.setClass(it1,LoginActivity::class.java) }
             CreateObjectFacade.instance.clearTempSession()
             startActivity(toLoginActivity)
+            activity?.finish()
             Toast.makeText(context,"Sessão encerrada",Toast.LENGTH_SHORT).show()
         }
         negativebtn.setOnClickListener {
