@@ -64,6 +64,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    implementation "androidx.paging:paging-runtime:2.1.2"
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
@@ -81,6 +85,13 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     implementation 'com.google.apis:google-api-services-customsearch:v1-rev20200408-1.30.9'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+
+    //SwipyRefreshLayout
+    implementation 'com.github.omadahealth:swipy:1.2.3@aar'
+
+    //CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
