@@ -8,15 +8,18 @@ import android.view.ViewGroup
 import android.widget.*
 import br.ufpb.dcx.apps4society.educapimanager.R
 import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
-import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer
+import br.ufpb.dcx.apps4society.educapimanager.control.service.ChallengesService
+import br.ufpb.dcx.apps4society.educapimanager.control.service.ContextsService
+import br.ufpb.dcx.apps4society.educapimanager.helper.RetrofitConfig
+import br.ufpb.dcx.apps4society.educapimanager.model.bean.Challenge
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.NewChallengeDTO
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class ChooseContextOnCreateChallenge : Fragment() {
-    private lateinit var contextos : List<br.ufpb.dcx.apps4society.educapimanager.model.bean.Context>
+    private lateinit var contextos : List<ContextDTO>
     private lateinit var listview: ListView
 
 
@@ -30,30 +33,28 @@ class ChooseContextOnCreateChallenge : Fragment() {
 
         listview = root.findViewById(R.id.listview_choose)
 
+        val challenge = CreateObjectFacade.instance.tempChallenge
+        val newChallengeDTO = challenge.challengeDTO(challenge)
+
         listview.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-            CreateObjectFacade.instance.tempChallenge.contexts.add(ContextDTO(contextos[position]))
-            contextos[position].challenges.add(CreateObjectFacade.instance.tempChallenge)
-            contextos[position].creator = CreateObjectFacade.instance.tempSession.creator
-            updateContext(contextos[position])
-            insertChallenge(CreateObjectFacade.instance.tempChallenge)
+            insertChallenge(contextos[position].id, newChallengeDTO)
         }
 
         return root
     }
 
     fun getContextsFromService(){
-        val call = RetrofitInitializer().contextService().findByUser(CreateObjectFacade.instance.tempSession.creator.id)
-        call.enqueue(object : Callback<List<br.ufpb.dcx.apps4society.educapimanager.model.bean.Context>> {
+        val call = RetrofitConfig.getAuthRetrofit(context).create(ContextsService::class.java).contextsByUser
+        call.enqueue(object : Callback<List<ContextDTO>> {
             override fun onFailure(
-                call: Call<List<br.ufpb.dcx.apps4society.educapimanager.model.bean.Context>>,
+                call: Call<List<ContextDTO>>,
                 t: Throwable
             ) {
                 Toast.makeText(context,"Ocorreu um Erro"+t.message,Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(
-                call: Call<List<br.ufpb.dcx.apps4society.educapimanager.model.bean.Context>>,
-                response: Response<List<br.ufpb.dcx.apps4society.educapimanager.model.bean.Context>>
+                call: Call<List<ContextDTO>>, response: Response<List<ContextDTO>>
             ) {
 
                 contextos = response.body()!!
@@ -64,30 +65,15 @@ class ChooseContextOnCreateChallenge : Fragment() {
         })
     }
 
-    fun updateContext(c:br.ufpb.dcx.apps4society.educapimanager.model.bean.Context){
-        val call = RetrofitInitializer().contextService().update(c,c.id,CreateObjectFacade.instance.tempSession.creator.id)
+    fun insertChallenge(idContext:Long, newChallengeDTO: NewChallengeDTO ){
+        val call = RetrofitConfig.getAuthRetrofit(context).create(ChallengesService::class.java).insertChallenge(idContext, newChallengeDTO)
 
-        call.enqueue(object : Callback<Void> {
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-
-            }
-
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-
-            }
-
-        })
-    }
-
-    fun insertChallenge(c:br.ufpb.dcx.apps4society.educapimanager.model.bean.Challenge){
-        val call = RetrofitInitializer().challengeService().insert(c)
-
-        call.enqueue(object : Callback<Void> {
-            override fun onFailure(call: Call<Void>, t: Throwable) {
+        call.enqueue(object : Callback<Challenge> {
+            override fun onFailure(call: Call<Challenge>, t: Throwable) {
                 Toast.makeText(context,"Desafio não cadastrado",Toast.LENGTH_LONG).show()
             }
 
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+            override fun onResponse(call: Call<Challenge>, response: Response<Challenge>) {
                 if(response.isSuccessful){
                     Toast.makeText(context,"Desafio Cadastrado Com sucesso",Toast.LENGTH_LONG).show()
                     CreateObjectFacade.instance.clearTempChallenge()
@@ -100,17 +86,13 @@ class ChooseContextOnCreateChallenge : Fragment() {
         })
     }
 
-    fun initializeSpinner(contexts: List<br.ufpb.dcx.apps4society.educapimanager.model.bean.Context>){
+    fun initializeSpinner(contexts: List<ContextDTO>){
         val names = arrayListOf<String>()
-        for (c:br.ufpb.dcx.apps4society.educapimanager.model.bean.Context in contexts){
+        for (c: ContextDTO in contexts){
             names.add(c.name)
         }
         val adapter = context?.let { ArrayAdapter(it,R.layout.sample_text_view_list,R.id.text_view_list,names) }
 
         listview.adapter = adapter
     }
-
-
-
-
 }
