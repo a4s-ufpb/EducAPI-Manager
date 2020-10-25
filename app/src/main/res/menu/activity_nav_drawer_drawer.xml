@@ -21,7 +21,7 @@
 
     </group>
 
-    <item android:title="Autentificação">
+    <item android:title="@string/menu_auth">
         <menu>
             <item
                 android:id="@+id/nav_logout"
