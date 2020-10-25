@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EducAPI Manager.iml" filepath="$PROJECT_DIR$/EducAPI Manager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/EducAPI-Manager-EducAPI Manager.iml" filepath="$PROJECT_DIR$/EducAPI-Manager-EducAPI Manager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/EducAPI-Manager-app.iml" filepath="$PROJECT_DIR$/app/EducAPI-Manager-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/StudioProjects-EducAPI-Manager-EducAPI Manager.iml" filepath="$PROJECT_DIR$/StudioProjects-EducAPI-Manager-EducAPI Manager.iml" group="EducAPI Manager" />
-      <module fileurl="file://$PROJECT_DIR$/app/StudioProjects-EducAPI-Manager-app.iml" filepath="$PROJECT_DIR$/app/StudioProjects-EducAPI-Manager-app.iml" group="EducAPI Manager/app" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/EducAPI_Manager.iml" filepath="$PROJECT_DIR$/.idea/modules/EducAPI_Manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/EducAPI_Manager.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/EducAPI_Manager.app.iml" />
     </modules>
   </component>
 </project>
