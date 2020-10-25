@@ -41,32 +41,33 @@
             android:gravity="center"
             android:text="Ou " />
 -->
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnImageWeb"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_research"
+            android:layout_height="50dp"
             android:drawablePadding="2dp"
+            android:gravity="center"
             android:text="Web"
-            app:backgroundTint="@color/colorAccent" />
+            app:backgroundTint="@color/colorAccent"
+            app:icon="@drawable/ic_research" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/context_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Ou " />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnImageUrl"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_url_xhdpi"
-            android:paddingTop="24dp"
+            android:layout_height="50dp"
             android:text="URL"
+            app:icon="@drawable/ic_url_xhdpi"
             app:backgroundTint="@color/colorAccent" />
     </LinearLayout>
 
