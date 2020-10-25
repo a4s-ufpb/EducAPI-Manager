@@ -6,16 +6,15 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.io.IOException;
-
 import br.ufpb.dcx.apps4society.educapimanager.R;
-import br.ufpb.dcx.apps4society.educapimanager.control.service.RetrofitInitializer;
+import br.ufpb.dcx.apps4society.educapimanager.helper.RetrofitConfig;
+import br.ufpb.dcx.apps4society.educapimanager.model.bean.User;
 import br.ufpb.dcx.apps4society.educapimanager.model.dto.UserDTO;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,14 +22,9 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
     private Context context = this;
-
-
+    //TODO("Implementar feedback por cor nos campos abaixo")
     private TextInputLayout tilName,tilEmail,tilPassword;
-    private TextInputEditText edtName,edtEmail,edtPassword;
-    private Toolbar register_toolbar;
-    private Button cadastrar;
-
-
+    private EditText edtName,edtEmail,edtPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,55 +38,51 @@ public class RegisterActivity extends AppCompatActivity {
         edtName = findViewById(R.id.edtTxNameRegister);
         edtEmail = findViewById(R.id.edtTxEmailRegister);
         edtPassword = findViewById(R.id.edtTxPasswordRegister);
-        cadastrar = findViewById(R.id.btnCadastro);
-        register_toolbar = findViewById(R.id.toolbar_register);
-        //
-
-        cadastrar.setOnClickListener(v -> {
-            UserDTO u = new UserDTO(
-                    edtName.getText().toString(),
-                    edtEmail.getText().toString(),
-                    edtPassword.getText().toString()
-            );
-            cadastrarUsuario(u);
-
-
-
-        });
+        Toolbar register_toolbar = findViewById(R.id.toolbar_register);
 
         register_toolbar.setNavigationOnClickListener(v -> {
             Intent ir = new Intent();
             ir.setClass(this.context,LoginActivity.class);
             startActivity(ir);
         });
-
-
     }
 
-    private void cadastrarUsuario (UserDTO u) {
+    public void cadastrarUsuario(View view){
+        if (verificarCamposDeTexto()){
+            Call<User> call = RetrofitConfig.userNewService().insertNewUser(
+                    new UserDTO(
+                    edtName.getText().toString(),
+                    edtEmail.getText().toString(),
+                    edtPassword.getText().toString()));
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful()){
+                        Toast.makeText(context,"Cadastrado Com Sucesso",Toast.LENGTH_SHORT).show();
+                        Intent ir = new Intent();
+                        ir.setClass(context,LoginActivity.class);
+                        startActivity(ir);
 
-        Call<Void> call = new RetrofitInitializer().userService().insert(u);
-
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()){
-                    Toast.makeText(context,"Cadastrado Com Sucesso",Toast.LENGTH_SHORT).show();
-                    Intent ir = new Intent();
-                    ir.setClass(context,LoginActivity.class);
-                    startActivity(ir);
-
-
-                }else if(response.code() == 400){
+                    }else if(response.code() == 400){
                         Toast.makeText(context,"Não foi possível cadastrar, verifique se sua senha tem entre 8-12 caracteres e tente novamente",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(context,"Algo de errado ocorreu",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(context,"Algo de errado ocorreu",Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context,"Não Foi possível se comunicar com o sistema",Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(context,"Não Foi possível se comunicar com o sistema",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
+
+    private boolean verificarCamposDeTexto(){
+        if (edtName.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty() || edtEmail.getText().toString().isEmpty()){
+            Toast.makeText(RegisterActivity.this, "Nenhum dos campos devem estar vazios!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
 }
