@@ -34,19 +34,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRecordAudioContextName">
 
-        <Button
-            android:id="@+id/button7"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="18dp"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/RecordAudioContext"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="70dp"
             android:background="@drawable/layout_shadow_trasparent_border_red"
-            android:drawableLeft="@drawable/ic_record_xhdpi"
             android:gravity="center"
-            android:paddingLeft="4dp"
             android:text="Gravar"
-            android:textColor="#fff3624b" />
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_record_xhdpi" />
 
         <View
             android:id="@+id/Divisor1"
@@ -63,7 +64,7 @@
             android:background="@drawable/layout_shadow_withe" />
 
     </LinearLayout>
-
+<!--
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -78,6 +79,6 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
+-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

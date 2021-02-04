@@ -1,7 +1,11 @@
 package br.ufpb.dcx.apps4society.educapimanager.model.bean;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.NewContextDTO;
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.UserDTO;
 
 /**
  * This class represents a set of related challenges.
@@ -10,14 +14,17 @@ import java.util.Set;
  * @author Emerson Dantas
  *
  */
-public class Context{
+
+public class Context implements Serializable {
 	private Long id;
 	private String name;
-	private User creator;
+
+	private UserDTO creator;
 	private String imageUrl;
 	private String soundUrl;
 	private String videoUrl;
-	private Set<Challenge> challenges = new HashSet<Challenge>();
+
+	private Set<Challenge> challenges = new HashSet<>();
 	
 	/**
 	 * Empty Constructor.
@@ -33,13 +40,17 @@ public class Context{
 	 * @param soundUrl The sound for this Context.
 	 * @param videoUrl The URL of a video for this Context.
 	 */
-	public Context(Long id, String name,  User creator, String imageUrl, String soundUrl, String videoUrl) {
+	public Context(Long id, String name, UserDTO creator, String imageUrl, String soundUrl, String videoUrl) {
 		this.id = id;
 		this.name = name;
 		this.creator = creator;
 		this.imageUrl = imageUrl;
 		this.soundUrl = soundUrl;
 		this.videoUrl = videoUrl;
+	}
+
+	public NewContextDTO toNewContextDto(Context context){
+		return new NewContextDTO(context.name, context.imageUrl, context.soundUrl, context.videoUrl);
 	}
 
 	/**
@@ -85,7 +96,7 @@ public class Context{
 	 * 
 	 * @return The user that created this Context.
 	 */
-	public User getCreator() {
+	public UserDTO getCreator() {
 		return this.creator;
 	}
 
@@ -95,7 +106,7 @@ public class Context{
 	 * @param creator
 	 *            The user creator.
 	 */
-	public void setCreator(User creator) {
+	public void setCreator(UserDTO creator) {
 		this.creator = creator;
 	}
 

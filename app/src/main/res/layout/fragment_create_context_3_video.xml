@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvVideoContextName">
-
+<!--
         <Button
             android:id="@+id/btnVideoRecord"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -59,14 +59,13 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Ou " />
-
-        <Button
+-->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVideoUrl"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_url_xhdpi"
-            android:paddingTop="24dp"
+            android:layout_height="50dp"
+            app:icon="@drawable/ic_url_xhdpi"
             android:text="URL"
             app:backgroundTint="@color/colorAccent" />
     </LinearLayout>
@@ -81,7 +80,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
+<!--
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -96,7 +95,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
+-->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"

@@ -23,13 +23,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvContextImageName">
-
-        <Button
+<!--
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnOpenCam"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_photo_add_xhdpi"
+            android:drawableTop="@drawable/reference_photo_add"
             android:text="Câmera"
             app:backgroundTint="@color/colorAccent" />
 
@@ -40,33 +40,34 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Ou " />
-
-        <Button
-            android:id="@+id/btnOpenGalery"
-            style="@style/Widget.AppCompat.Button.Borderless"
+-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnImageWeb"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_galery_add_xhdpi"
+            android:layout_height="50dp"
             android:drawablePadding="2dp"
-            android:text="Galeria"
-            app:backgroundTint="@color/colorAccent" />
+            android:gravity="center"
+            android:text="Web"
+            app:backgroundTint="@color/colorAccent"
+            app:icon="@drawable/ic_research" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/context_name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Ou " />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnImageUrl"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_url_xhdpi"
-            android:paddingTop="24dp"
+            android:layout_height="50dp"
             android:text="URL"
+            app:icon="@drawable/ic_url_xhdpi"
             app:backgroundTint="@color/colorAccent" />
     </LinearLayout>
 
@@ -80,7 +81,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
+<!--
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -95,7 +96,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
+-->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"

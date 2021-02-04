@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import br.ufpb.dcx.apps4society.educapimanager.R
 import br.ufpb.dcx.apps4society.educapimanager.model.ButtonListener
 import br.ufpb.dcx.apps4society.educapimanager.model.LoadImageUrlListener
 import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
+import br.ufpb.dcx.apps4society.educapimanager.view.ui.search.SearchFragment
 import br.ufpb.dcx.apps4society.educapimanager.view.ui.url.UrlFragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.EncodeStrategy
@@ -23,8 +25,8 @@ class PhotoCreateChallengeFragment : Fragment(), View.OnClickListener,
     LoadImageUrlListener {
 
     private lateinit var btnChallengeImageUrl : Button
-    private lateinit var btnChallengeCam : Button
-    private lateinit var btnChallengeGalery : Button
+    //private lateinit var btnChallengeCam : Button
+    private lateinit var btnChallengeImageWeb : Button
     private lateinit var challengeImageView : ImageView
     private lateinit var tvChallengePhoto : TextView
     private var buttons : ArrayList<Button> = ArrayList()
@@ -36,17 +38,17 @@ class PhotoCreateChallengeFragment : Fragment(), View.OnClickListener,
         btnChallengeImageUrl = root.findViewById(R.id.btnChallengeImageUrl)
         btnChallengeImageUrl.setOnClickListener(this)
 
-        btnChallengeCam = root.findViewById(R.id.btnChallengeCam)
-        btnChallengeCam.setOnClickListener(this)
+        //btnChallengeCam = root.findViewById(R.id.btnChallengeCam)
+        //btnChallengeCam.setOnClickListener(this)
 
-        btnChallengeGalery = root.findViewById(R.id.btnChallengeGalery)
-        btnChallengeGalery.setOnClickListener(this)
+        btnChallengeImageWeb= root.findViewById(R.id.btnChallengeImageWeb)
+        btnChallengeImageWeb.setOnClickListener(this)
 
         challengeImageView = root.findViewById(R.id.challengeImageView)
 
         tvChallengePhoto = root.findViewById(R.id.tvChallengePhoto)
 
-        buttons.addAll(listOf(btnChallengeImageUrl, btnChallengeCam, btnChallengeGalery))
+        buttons.addAll(listOf(btnChallengeImageUrl, btnChallengeImageWeb))
 
         tvChallengePhoto.text = "Imagem do desafio " + CreateObjectFacade.instance.tempChallenge.word
         return root
@@ -61,8 +63,17 @@ class PhotoCreateChallengeFragment : Fragment(), View.OnClickListener,
         when(v?.id){
             R.id.btnChallengeImageUrl -> {
                 loadUrlFragment()
+
             }
-        }
+            R.id.btnChallengeImageWeb ->{
+                loadImageSearchFragment()
+            }
+            /*
+            R.id.btnChallengeCam->{
+                Toast.makeText(context,"Opção ainda não disponivel nesta versão", Toast.LENGTH_SHORT).show()}
+
+             */
+             }
     }
 
     private fun loadUrlFragment(){
@@ -70,6 +81,14 @@ class PhotoCreateChallengeFragment : Fragment(), View.OnClickListener,
         val urlFragment : UrlFragment = UrlFragment(this)
         urlFragment.type = UrlFragment.IMAGE_URL
         transaction?.replace(R.id.frameAuxPhotoFragment, urlFragment)
+        transaction?.addToBackStack(null)
+        transaction?.commit()
+    }
+
+    private fun loadImageSearchFragment(){
+        val transaction = fragmentManager?.beginTransaction()
+        val searchFragment = SearchFragment(this,CreateObjectFacade.instance.tempChallenge.word,"challenge")
+        transaction?.replace(R.id.frameAuxPhotoFragment, searchFragment)
         transaction?.addToBackStack(null)
         transaction?.commit()
     }

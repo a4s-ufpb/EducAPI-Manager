@@ -18,10 +18,10 @@ public class ContextDTO  implements Serializable{
 	
 	public ContextDTO(Context obj) {
 		this.id = obj.getId();
-		this.name = obj.getName();
-		this.imageUrl = obj.getImageUrl();
-		this.soundUrl = obj.getSoundUrl();
-		this.videoUrl = obj.getVideoUrl();
+	}
+
+	public NewContextDTO toNewContextDto(ContextDTO contextDTO){
+		return new NewContextDTO(contextDTO.name, contextDTO.imageUrl, contextDTO.soundUrl, contextDTO.videoUrl);
 	}
 
 	public Long getId() {

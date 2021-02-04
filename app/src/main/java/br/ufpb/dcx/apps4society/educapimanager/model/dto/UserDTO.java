@@ -13,6 +13,11 @@ public class UserDTO implements Serializable{
 	private String password;
 	
 	public UserDTO() {}
+
+	public UserDTO(String email,String password){
+		this.email = email;
+		this.password = password;
+	}
 	
 	public UserDTO(User obj) {
 		this.id = obj.getId();
@@ -20,8 +25,15 @@ public class UserDTO implements Serializable{
 		this.email = obj.getEmail();
 		this.password = obj.getPassword();
 	}
+	public UserDTO (String name,String email,String password ){
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
 
-	public Long getId() {
+
+
+    public Long getId() {
 		return id;
 	}
 
@@ -52,5 +64,28 @@ public class UserDTO implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		UserDTO userDTO = (UserDTO) o;
+		return email.equals(userDTO.email) &&
+				password.equals(userDTO.password);
+	}
+
+	@Override
+	public int hashCode() {
+		return 0;
+	}
+
+	@Override
+	public String toString() {
+		return "UserDTO{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				'}';
+	}
 }

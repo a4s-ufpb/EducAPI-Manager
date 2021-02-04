@@ -1,7 +1,12 @@
 package br.ufpb.dcx.apps4society.educapimanager.model.bean;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.ContextDTO;
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.NewChallengeDTO;
+import br.ufpb.dcx.apps4society.educapimanager.model.dto.UserDTO;
 
 
 /**
@@ -12,15 +17,15 @@ import java.util.Set;
  *
  */
 
-public class Challenge{
+public class Challenge implements Serializable {
 
 	private Long id;
 	private String word;
-	private User creator;
+	private UserDTO creator;
 	private String soundUrl;
 	private String videoUrl;
 	private String imageUrl;
-	private Set<Context> contexts = new HashSet<Context>();
+	private Set<Context> contexts = new HashSet<>();
 	
 	/**
 	 * Empty Constructor.
@@ -35,13 +40,18 @@ public class Challenge{
 	 * @param videoUrl The URL of a video representing this Challenge.
 	 * @param imageUrl The imageUrl representing this Challenge.
 	 */
-	public Challenge(Long id, String word, User creator, String imageUrl, String soundUrl, String videoUrl) {
+	public Challenge(Long id, String word, UserDTO creator, String imageUrl, String soundUrl, String videoUrl,HashSet<Context> contexts) {
 		this.id = id;
 		this.word = word;
 		this.creator = creator;
 		this.soundUrl = soundUrl;
 		this.videoUrl = videoUrl;
 		this.imageUrl = imageUrl;
+		this.contexts = contexts;
+	}
+
+	public NewChallengeDTO challengeDTO(Challenge challenge){
+		return new NewChallengeDTO(challenge.getWord(), challenge.getSoundUrl(), challenge.getVideoUrl(), challenge.getImageUrl());
 	}
 	
 	/**
@@ -87,7 +97,7 @@ public class Challenge{
 	 * 
 	 * @return the creator that owns this Challenge.
 	 */
-	public User getCreator() {
+	public UserDTO getCreator() {
 		return this.creator;
 	}
 
@@ -97,7 +107,7 @@ public class Challenge{
 	 * @param creator
 	 *            the new creator that owns this Challenge.
 	 */
-	public void setCreator(User creator) {
+	public void setCreator(UserDTO creator) {
 		this.creator = creator;
 	}
 
@@ -108,7 +118,7 @@ public class Challenge{
 	 */
 	public Set<Context> getContexts() {
 		return this.contexts;
-	}
+		}
 
 	/**
 	 * Changes the Contexts related to this Challenge.
@@ -205,7 +215,7 @@ public class Challenge{
 	@Override
 	public String toString() {
 		return "Challenge [id=" + id + ", word=" + word + ", creator=" + creator + ", soundUrl=" + soundUrl
-				+ ", videoUrl=" + videoUrl + ", imageUrl=" + imageUrl + ", contexts=" + contexts + "]";
+				+ ", videoUrl=" + videoUrl + ", imageUrl=" + imageUrl +"]";
 	}
 
 

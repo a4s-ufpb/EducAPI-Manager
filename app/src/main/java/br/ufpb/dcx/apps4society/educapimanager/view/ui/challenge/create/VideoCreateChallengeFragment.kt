@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import br.ufpb.dcx.apps4society.educapimanager.R
 import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
@@ -26,11 +27,11 @@ class VideoCreateChallengeFragment : Fragment(), View.OnClickListener , ButtonLi
         btnChallengeVideoUrl = root.findViewById(R.id.btnChallengeVideoUrl)
         btnChallengeVideoUrl.setOnClickListener(this)
 
-        btnChallengeGalery = root.findViewById(R.id.btnChallengeGalery)
-        btnChallengeGalery.setOnClickListener(this)
+        //btnChallengeGalery = root.findViewById(R.id.btnChallengeGalery)
+        //btnChallengeGalery.setOnClickListener(this)
 
-        btnChallengeRecordVideo = root.findViewById(R.id.btnChallengeRecordVideo)
-        btnChallengeRecordVideo.setOnClickListener(this)
+       // btnChallengeRecordVideo = root.findViewById(R.id.btnChallengeRecordVideo)
+        //btnChallengeRecordVideo.setOnClickListener(this)
 
         tvChallengeVideoName = root.findViewById(R.id.tvChallengeVideoName)
 
@@ -48,6 +49,14 @@ class VideoCreateChallengeFragment : Fragment(), View.OnClickListener , ButtonLi
             R.id.btnChallengeVideoUrl -> {
                 loadUrlFragment()
             }
+            /*
+            R.id.btnChallengeRecordVideo -> {
+                Toast.makeText(context,"Opção ainda não disponivel nesta versão", Toast.LENGTH_SHORT).show()
+            }
+            R.id.btnChallengeGalery -> {
+                Toast.makeText(context,"Opção ainda não disponivel nesta versão", Toast.LENGTH_SHORT).show()
+            }
+            */
         }
     }
 

@@ -9,7 +9,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import br.ufpb.dcx.apps4society.educapimanager.R
 
-
 class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
 
     private lateinit var navController : NavController
@@ -27,7 +26,7 @@ class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
 
     private fun setToolbar(){
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp)
-        toolbar.setTitle(navController.currentDestination!!.label)
+        toolbar.title = navController.currentDestination!!.label
 
         setSupportActionBar(toolbar)
     }
@@ -44,6 +43,7 @@ class CreateContextActivity : AppCompatActivity(), View.OnClickListener{
                 navController.graph.findNode(R.id.nav_context_audio) -> navController.navigate(R.id.action_nav_context_audio_to_nav_context_sucess)
 
                 navController.graph.findNode(R.id.nav_context_sucess) -> finish()
+
             }
         }
     }

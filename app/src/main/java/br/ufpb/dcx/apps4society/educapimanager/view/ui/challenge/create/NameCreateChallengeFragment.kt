@@ -1,6 +1,8 @@
 package br.ufpb.dcx.apps4society.educapimanager.view.ui.challenge.create
 
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -12,11 +14,16 @@ import br.ufpb.dcx.apps4society.educapimanager.R
 import br.ufpb.dcx.apps4society.educapimanager.control.facade.CreateObjectFacade
 import com.google.android.material.textfield.TextInputLayout
 
-class NameCreateChallengeFragment : Fragment() {
-    private var TAG : String = "NameCreateChallengeFragment"
-    private lateinit var tvName : TextInputLayout
+class NameCreateChallengeFragment() : Fragment() {
+    private var TAG: String = "NameCreateChallengeFragment"
+    private lateinit var tvName: TextInputLayout
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val root = inflater.inflate(R.layout.fragment_create_challenge_1_name, container, false)
         tvName = root.findViewById(R.id.tilName)
         tvName.editText?.addTextChangedListener(object : TextWatcher {
@@ -38,4 +45,5 @@ class NameCreateChallengeFragment : Fragment() {
         tvName.editText?.setText(CreateObjectFacade.instance.tempChallenge.word)
         return root
     }
+
 }

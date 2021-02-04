@@ -40,8 +40,8 @@ public class User {
 	public User(Long id, String name, String email, String password) {
 		this.id = id;
 		this.name = name;
-		this.setEmail(email);
-		this.setPassword(password);
+		this.email = email;
+		this.password = password;
 	}
 
 	/**

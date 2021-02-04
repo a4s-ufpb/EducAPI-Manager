@@ -45,6 +45,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="PRÓXIMO"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
