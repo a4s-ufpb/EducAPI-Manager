@@ -7,10 +7,14 @@ Android Project - Manager for EducAPI
 
 # To make this project run you will need to have the following items installed:
    • Android Studio or other IDE of your choice
-	o  Java 11 or OpenJDK 11
-	o  Gradle-6.1.1 or higher
-	o  Android Version 4.4 or higher
-	o  Kotlin 1.4.21-release-Studio4.0-1 or higher
+
+	Java 11 or OpenJDK 11
+	
+	Gradle-6.1.1 or higher
+	
+	Android Version 4.4 or higher
+	
+	Kotlin 1.4.21-release-Studio4.0-1 or higher
 
 It is recommended to use the IDE and updated plugins.
 
