@@ -3,6 +3,7 @@ Android Project - Manager for EducAPI
 
 # To clone the repository:
    • git clone https://github.com/a4s-ufpb/EducAPI-Manager.git
+   
    • cd EducAPI_Manager
 
 # To make this project run you will need to have the following items installed:
