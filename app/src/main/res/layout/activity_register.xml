@@ -36,7 +36,7 @@
         android:layout_marginTop="170dp"
         android:text="EducAPI Manager"
         android:textColor="@color/slogan_app_color"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textView2"

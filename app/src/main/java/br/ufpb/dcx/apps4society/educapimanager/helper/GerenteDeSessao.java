@@ -7,13 +7,13 @@ import br.ufpb.dcx.apps4society.educapimanager.R;
 
 public class GerenteDeSessao {
 
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences sharedPreferences;
 
     public GerenteDeSessao(Context context) {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
     }
 
-    private static String USER_TOKEN = "user_token";
+    private static final String USER_TOKEN = "user_token";
 
     public void saveAuthToken(String token){
         SharedPreferences.Editor editor = sharedPreferences.edit();

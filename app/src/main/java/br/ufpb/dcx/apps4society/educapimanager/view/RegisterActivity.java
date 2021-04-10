@@ -24,12 +24,12 @@ public class RegisterActivity extends AppCompatActivity {
     private Context context = this;
     //TODO("Implementar feedback por cor nos campos abaixo")
     private TextInputLayout tilName,tilEmail,tilPassword;
-    private EditText edtName,edtEmail,edtPassword;
+    private EditText edtName,edtEmail,edtPassword, edtConfPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_new_register);
 
         //initialização dos componentes
         tilName = findViewById(R.id.tilNameRegister);
@@ -38,51 +38,67 @@ public class RegisterActivity extends AppCompatActivity {
         edtName = findViewById(R.id.edtTxNameRegister);
         edtEmail = findViewById(R.id.edtTxEmailRegister);
         edtPassword = findViewById(R.id.edtTxPasswordRegister);
+        edtConfPassword = findViewById(R.id.edtTxPasswordConfirm);
+
         Toolbar register_toolbar = findViewById(R.id.toolbar_register);
 
         register_toolbar.setNavigationOnClickListener(v -> {
-            Intent ir = new Intent();
-            ir.setClass(this.context,LoginActivity.class);
-            startActivity(ir);
+            finish();
         });
+
     }
 
     public void cadastrarUsuario(View view){
         if (verificarCamposDeTexto()){
-            Call<User> call = RetrofitConfig.userNewService().insertNewUser(
-                    new UserDTO(
-                    edtName.getText().toString(),
-                    edtEmail.getText().toString(),
-                    edtPassword.getText().toString()));
-            call.enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    if (response.isSuccessful()){
-                        Toast.makeText(context,"Cadastrado Com Sucesso",Toast.LENGTH_SHORT).show();
-                        Intent ir = new Intent();
-                        ir.setClass(context,LoginActivity.class);
-                        startActivity(ir);
+            if (verificarSenhasDigitadas()){
+                Call<User> call = RetrofitConfig.userNewService().insertNewUser(
+                        new UserDTO(
+                                edtName.getText().toString(),
+                                edtEmail.getText().toString(),
+                                edtPassword.getText().toString()));
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if (response.isSuccessful()){
+                            Toast.makeText(context,"Cadastrado Com Sucesso",Toast.LENGTH_SHORT).show();
+                            Intent ir = new Intent();
+                            ir.setClass(context,LoginActivity.class);
+                            startActivity(ir);
 
-                    }else if(response.code() == 400){
-                        Toast.makeText(context,"Não foi possível cadastrar, verifique se sua senha tem entre 8-12 caracteres e tente novamente",Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(context,"Algo de errado ocorreu",Toast.LENGTH_SHORT).show();
+                        }else if(response.code() == 400){
+                            Toast.makeText(context,"Não foi possível cadastrar, verifique se sua senha tem entre 8-12 caracteres e tente novamente",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(context,"Algo de errado ocorreu",Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-                    Toast.makeText(context,"Não Foi possível se comunicar com o sistema",Toast.LENGTH_SHORT).show();
-                }
-            });
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(context,"Não Foi possível se comunicar com o sistema",Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
     }
 
     private boolean verificarCamposDeTexto(){
-        if (edtName.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty() || edtEmail.getText().toString().isEmpty()){
+        if (edtName.getText().toString().isEmpty() || edtPassword.getText().toString().isEmpty() || edtEmail.getText().toString().isEmpty() || edtConfPassword.getText().toString().isEmpty()){
             Toast.makeText(RegisterActivity.this, "Nenhum dos campos devem estar vazios!", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
     }
 
+    private boolean verificarSenhasDigitadas(){
+        if (edtPassword.getText().toString().equals(edtConfPassword.getText().toString())){
+            return true;
+        }
+        Toast.makeText(RegisterActivity.this, "As senhas não correspondem! Por favor, corrigir.", Toast.LENGTH_LONG).show();
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

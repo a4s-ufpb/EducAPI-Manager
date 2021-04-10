@@ -84,4 +84,10 @@ class ContextFragment : Fragment() {
             }
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
+
 }

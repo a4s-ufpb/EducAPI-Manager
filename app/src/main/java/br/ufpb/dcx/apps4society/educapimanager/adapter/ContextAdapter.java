@@ -200,7 +200,7 @@ public class ContextAdapter extends RecyclerView.Adapter<ContextAdapter.ItemView
     }
 
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageContext;
         TextView contextName, contextId;
